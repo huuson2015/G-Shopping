@@ -1,6 +1,6 @@
 const Loader = () => {
 	return (
-		<div className="animate-spin rounded-full h-16 w-16 border-t-4 border-pink-500 border-opacity-50"></div>
+		<div className="animate-spin rounded-full w-full h-full border-t-2 border-r-2 border-white"></div>
 	);
 };
 

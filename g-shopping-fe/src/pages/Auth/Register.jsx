@@ -4,16 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
-import { useLoginMutation } from "../../redux/api/userApiSlice";
+import { useRegisterMutation } from "../../redux/api/userApiSlice";
 
-const Login = () => {
+const Register = () => {
+	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const [login, { isLoading }] = useLoginMutation();
+	const [register, { isLoading }] = useRegisterMutation();
 
 	const { userInfo } = useSelector((state) => state.auth);
 
@@ -29,23 +31,41 @@ const Login = () => {
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
-		try {
-			const res = await login({ email, password }).unwrap();
-			dispatch(setCredentials({ ...res }));
-			navigate(redirect);
-		} catch (err) {
-			toast.error(err?.data?.message || err.error);
+
+		if (password !== confirmPassword) {
+			toast.error("Passwords do not match");
+		} else {
+			try {
+				const res = await register({ username, email, password }).unwrap();
+				dispatch(setCredentials({ ...res }));
+				navigate(redirect);
+				toast.success("User successfully registered");
+			} catch (err) {
+				console.log(err);
+				toast.error(err.data.message);
+			}
 		}
 	};
-
 	return (
-		<section className="flex w-full justify-center items-center pt-[15vh]">
+		<section className="flex w-full justify-center items-center pt-[10vh]">
 			<form
 				onSubmit={submitHandler}
 				className="container flex flex-col gap-2 mx-5 sm:w-[40vw] border border-dark-linebase rounded-lg p-5"
 			>
-				<h1 className="text-2xl font-semibold mb-4 ">Sign In</h1>
-
+				<h1 className="text-2xl font-semibold mb-4 ">Sign Up</h1>
+				<div className="w-full">
+					<label htmlFor="username" className="block text-sm font-medium ">
+						Username
+					</label>
+					<input
+						type="username"
+						id="username"
+						className="w-full border-dark-linebase mt-1 p-2 border rounded"
+						placeholder="Enter username"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+					/>
+				</div>
 				<div className="w-full">
 					<label htmlFor="email" className="block text-sm font-medium ">
 						Email Address
@@ -59,7 +79,6 @@ const Login = () => {
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</div>
-
 				<div className="w-full">
 					<label htmlFor="password" className="block text-sm font-medium ">
 						Password
@@ -73,31 +92,38 @@ const Login = () => {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</div>
+				<div className="w-full">
+					<label htmlFor="password" className="block text-sm font-medium ">
+						Confirm Password
+					</label>
+					<input
+						type="confirmPassword"
+						id="confirmPassword"
+						className="w-full mt-1 p-2 border border-dark-linebase rounded"
+						placeholder="Enter confirm password"
+						value={confirmPassword}
+						onChange={(e) => setConfirmPassword(e.target.value)}
+					/>
+				</div>
 				<p className="text-sm font-medium">
-					New Customer?{" "}
+					Old Customer?{" "}
 					<Link
-						to={redirect ? `/register?redirect=${redirect}` : "/register"}
+						to={redirect ? `/login?redirect=${redirect}` : "/login"}
 						className="text-primary hover:underline"
 					>
-						Register
+						Login
 					</Link>
 				</p>
-				<button
-					disabled={isLoading}
-					type="submit"
-					className="bg-dark-bg2 flex justify-center mt-4 text-white  px-4 py-2 rounded cursor-pointer my-[1rem]"
-				>
-					{isLoading ? (
-						<div className="h-6 w-6">
-							<Loader />
-						</div>
-					) : (
-						"Sign In"
-					)}
-				</button>
+				{isLoading ? (
+					<div className="h-6 w-6">
+						<Loader />
+					</div>
+				) : (
+					"Register"
+				)}
 			</form>
 		</section>
 	);
 };
 
-export default Login;
+export default Register;
