@@ -5,12 +5,24 @@ import Loader from "../../components/Loader";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import { useRegisterMutation } from "../../redux/api/userApiSlice";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
 
 const Register = () => {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [isShowPassword, setIsShowPassword] = useState(false);
+	const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
+
+	const toggleShowPassword = () => {
+		setIsShowPassword(!isShowPassword);
+	};
+
+	const toggleShowConfirmPassword = () => {
+		setIsShowConfirmPassword(!isShowConfirmPassword);
+	};
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -83,27 +95,64 @@ const Register = () => {
 					<label htmlFor="password" className="block text-sm font-medium ">
 						Password
 					</label>
-					<input
-						type="password"
-						id="password"
-						className="w-full mt-1 p-2 border border-dark-linebase rounded"
-						placeholder="Enter password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
+					<div className="relative">
+						<input
+							type={`${isShowPassword ? "text" : "password"}`}
+							id="password"
+							className="w-full mt-1 p-2 border border-dark-linebase rounded"
+							placeholder="Enter password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+						{isShowPassword ? (
+							<div
+								className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
+								onClick={toggleShowPassword}
+							>
+								<AiFillEyeInvisible className="text-textdark" size={20} />
+							</div>
+						) : (
+							<div
+								className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
+								onClick={toggleShowPassword}
+							>
+								<AiOutlineEye className="text-textdark" size={20} />
+							</div>
+						)}
+					</div>
 				</div>
 				<div className="w-full">
-					<label htmlFor="password" className="block text-sm font-medium ">
+					<label
+						htmlFor="confirmPassword"
+						className="block text-sm font-medium "
+					>
 						Confirm Password
 					</label>
-					<input
-						type="confirmPassword"
-						id="confirmPassword"
-						className="w-full mt-1 p-2 border border-dark-linebase rounded"
-						placeholder="Enter confirm password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-					/>
+					<div className="relative">
+						<input
+							type={`${isShowConfirmPassword ? "text" : "password"}`}
+							id="confirmPassword"
+							className="w-full mt-1 p-2 border border-dark-linebase rounded"
+							placeholder="Enter confirm password"
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+						/>
+						{isShowConfirmPassword ? (
+							<div
+								className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
+								onClick={toggleShowConfirmPassword}
+							>
+								<AiFillEyeInvisible className="text-textdark" size={20} />
+							</div>
+						) : (
+							<div
+								className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
+								onClick={toggleShowConfirmPassword}
+							>
+								<AiOutlineEye className="text-textdark" size={20} />
+							</div>
+						)}
+					</div>
 				</div>
 				<p className="text-sm font-medium">
 					Old Customer?{" "}

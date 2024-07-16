@@ -5,10 +5,16 @@ import Loader from "../../components/Loader";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import { useLoginMutation } from "../../redux/api/userApiSlice";
+import { AiFillEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isShowPassword, setIsShowPassword] = useState(false);
+
+	const toggleShowPassword = () => {
+		setIsShowPassword(!isShowPassword);
+	};
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -64,14 +70,31 @@ const Login = () => {
 					<label htmlFor="password" className="block text-sm font-medium ">
 						Password
 					</label>
-					<input
-						type="password"
-						id="password"
-						className="w-full mt-1 p-2 border border-dark-linebase rounded"
-						placeholder="Enter password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
+					<div className="relative">
+						<input
+							type={isShowPassword ? "text" : "password"}
+							id="password"
+							className="w-full mt-1 p-2 border border-dark-linebase rounded"
+							placeholder="Enter password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+						{isShowPassword ? (
+							<div
+								className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
+								onClick={toggleShowPassword}
+							>
+								<AiFillEyeInvisible className="text-textdark" size={20} />
+							</div>
+						) : (
+							<div
+								className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
+								onClick={toggleShowPassword}
+							>
+								<AiOutlineEye className="text-textdark" size={20} />
+							</div>
+						)}
+					</div>
 				</div>
 				<p className="text-sm font-medium">
 					New Customer?{" "}
