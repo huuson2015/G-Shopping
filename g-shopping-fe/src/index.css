@@ -3,22 +3,27 @@
 @tailwind utilities;
 
 @layer base {
+	@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
 	:root {
-		--dark-bg-primary: 37 40 54;
-		--dark-bg-secondary: 31 29 43;
-		--dark-bg-base: 45 48 62;
-		--dark-bg-form: 57 60 73;
-		--dark-line-base: 57 60 73;
-		--primary: 234 124 105;
-		--secondary: 146 136 224;
-		--text-lighter: 224 230 233;
-		--text-light: 171 187 194;
-		--text-dark: 59 81 98;
-		--text-gray: 136 152 152;
+		--primary: 255 255 255;
+		--primary-dark: 54 55 56;
+
+		--secondary: 245 245 245;
+		--secondary-light: 254 250 241;
+
+		--text: 250 250 250;
+		--text-dark: 0 0 0;
+		--text-gray: 125 129 132;
+
+		--button-green: 0 255 102;
+		--button-red: 219 68 68;
+		--button-hover1: 224 117 117;
+		--button-hover2: 160 188 224;
 	}
 
 	html {
-		font-family: "Barlow", system-ui, sans-serif;
+		font-family: "Inter", system-ui, sans-serif;
 	}
 
 	input[type="number"]::-webkit-inner-spin-button,

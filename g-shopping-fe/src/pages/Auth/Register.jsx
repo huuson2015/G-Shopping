@@ -59,118 +59,131 @@ const Register = () => {
 		}
 	};
 	return (
-		<section className="flex w-full justify-center items-center pt-[10vh]">
-			<form
-				onSubmit={submitHandler}
-				className="container flex flex-col gap-2 mx-5 sm:w-[40vw] border border-dark-linebase rounded-lg p-5"
-			>
-				<h1 className="text-2xl font-semibold mb-4 ">Sign Up</h1>
-				<div className="w-full">
-					<label htmlFor="username" className="block text-sm font-medium ">
-						Username
-					</label>
-					<input
-						type="username"
-						id="username"
-						className="w-full border-dark-linebase mt-1 p-2 border rounded"
-						placeholder="Enter username"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-					/>
-				</div>
-				<div className="w-full">
-					<label htmlFor="email" className="block text-sm font-medium ">
-						Email Address
-					</label>
-					<input
-						type="email"
-						id="email"
-						className="w-full border-dark-linebase mt-1 p-2 border rounded"
-						placeholder="Enter email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-				</div>
-				<div className="w-full">
-					<label htmlFor="password" className="block text-sm font-medium ">
-						Password
-					</label>
-					<div className="relative">
+		<section className="flex w-full items-center justify-center pt-[15vh] sm:pt-0">
+			<div className="w-1/2 hidden md:block">
+				<img src="/assets/sideImage.png" className="w-[95%] hidden md:block" />
+			</div>
+			<div className="w-4/5 md:w-1/2 flex justify-center items-center">
+				<form
+					onSubmit={submitHandler}
+					className="md:flex w-full lg:w-2/3 flex-col gap-2 items-center justify-center p-5"
+				>
+					<h1 className="text-2xl font-semibold mb-4 ">Sign Up</h1>
+					<div className="w-full">
+						<label htmlFor="username" className="block text-sm font-medium ">
+							Username
+						</label>
 						<input
-							type={`${isShowPassword ? "text" : "password"}`}
-							id="password"
-							className="w-full mt-1 p-2 border border-dark-linebase rounded"
-							placeholder="Enter password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							type="username"
+							id="username"
+							className="w-full mt-1 py-2 border-b border-gray-400 focus:outline-none"
+							placeholder="Enter username"
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
 						/>
-						{isShowPassword ? (
-							<div
-								className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
-								onClick={toggleShowPassword}
-							>
-								<AiFillEyeInvisible className="text-textdark" size={20} />
-							</div>
-						) : (
-							<div
-								className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
-								onClick={toggleShowPassword}
-							>
-								<AiOutlineEye className="text-textdark" size={20} />
-							</div>
-						)}
 					</div>
-				</div>
-				<div className="w-full">
-					<label
-						htmlFor="confirmPassword"
-						className="block text-sm font-medium "
-					>
-						Confirm Password
-					</label>
-					<div className="relative">
+					<div className="w-full">
+						<label htmlFor="email" className="block text-sm font-medium ">
+							Email Address
+						</label>
 						<input
-							type={`${isShowConfirmPassword ? "text" : "password"}`}
-							id="confirmPassword"
-							className="w-full mt-1 p-2 border border-dark-linebase rounded"
-							placeholder="Enter confirm password"
-							value={confirmPassword}
-							onChange={(e) => setConfirmPassword(e.target.value)}
+							type="email"
+							id="email"
+							className="w-full mt-1 py-2 border-b border-gray-400 focus:outline-none"
+							placeholder="Enter email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
-						{isShowConfirmPassword ? (
-							<div
-								className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
-								onClick={toggleShowConfirmPassword}
-							>
-								<AiFillEyeInvisible className="text-textdark" size={20} />
-							</div>
-						) : (
-							<div
-								className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
-								onClick={toggleShowConfirmPassword}
-							>
-								<AiOutlineEye className="text-textdark" size={20} />
-							</div>
-						)}
 					</div>
-				</div>
-				<p className="text-sm font-medium">
-					Old Customer?{" "}
-					<Link
-						to={redirect ? `/login?redirect=${redirect}` : "/login"}
-						className="text-primary hover:underline"
-					>
-						Login
-					</Link>
-				</p>
-				{isLoading ? (
-					<div className="h-6 w-6">
-						<Loader />
+					<div className="w-full">
+						<label htmlFor="password" className="block text-sm font-medium ">
+							Password
+						</label>
+						<div className="relative">
+							<input
+								type={`${isShowPassword ? "text" : "password"}`}
+								id="password"
+								className="w-full mt-1 py-2 border-b border-gray-400 focus:outline-none"
+								placeholder="Enter password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+							{isShowPassword ? (
+								<div
+									className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
+									onClick={toggleShowPassword}
+								>
+									<AiFillEyeInvisible className="" size={20} />
+								</div>
+							) : (
+								<div
+									className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
+									onClick={toggleShowPassword}
+								>
+									<AiOutlineEye className="" size={20} />
+								</div>
+							)}
+						</div>
 					</div>
-				) : (
-					"Register"
-				)}
-			</form>
+					<div className="w-full">
+						<label
+							htmlFor="confirmPassword"
+							className="block text-sm font-medium "
+						>
+							Confirm Password
+						</label>
+						<div className="relative">
+							<input
+								type={`${isShowConfirmPassword ? "text" : "password"}`}
+								id="confirmPassword"
+								className="w-full mt-1 py-2 border-b border-gray-400 focus:outline-none"
+								placeholder="Enter confirm password"
+								value={confirmPassword}
+								onChange={(e) => setConfirmPassword(e.target.value)}
+							/>
+							{isShowConfirmPassword ? (
+								<div
+									className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
+									onClick={toggleShowConfirmPassword}
+								>
+									<AiFillEyeInvisible className="" size={20} />
+								</div>
+							) : (
+								<div
+									className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
+									onClick={toggleShowConfirmPassword}
+								>
+									<AiOutlineEye className="" size={20} />
+								</div>
+							)}
+						</div>
+					</div>
+					<div className="flex  w-full justify-between items-center">
+						<button
+							disabled={isLoading}
+							type="submit"
+							className="flex justify-center mt-4 bg-button-red text-white  px-4 py-2 rounded cursor-pointer my-[1rem]"
+						>
+							{isLoading ? (
+								<div className="h-6 w-6">
+									<Loader />
+								</div>
+							) : (
+								"Register"
+							)}
+						</button>
+						<p className="text-sm font-medium">
+							Old Customer?{" "}
+							<Link
+								to={redirect ? `/login?redirect=${redirect}` : "/login"}
+								className="text-primary hover:underline"
+							>
+								Login
+							</Link>
+						</p>
+					</div>
+				</form>
+			</div>
 		</section>
 	);
 };

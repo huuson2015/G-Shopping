@@ -14,7 +14,7 @@ const appRoutes = [
 		element: <Login />,
 	},
 	{
-		name: "About us",
+		name: "About",
 		path: "/cart",
 		element: <Login />,
 	},

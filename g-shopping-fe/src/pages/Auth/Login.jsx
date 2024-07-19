@@ -45,80 +45,88 @@ const Login = () => {
 	};
 
 	return (
-		<section className="flex w-full justify-center items-center pt-[15vh]">
-			<form
-				onSubmit={submitHandler}
-				className="container flex flex-col gap-2 mx-5 sm:w-[40vw] border border-dark-linebase rounded-lg p-5"
-			>
-				<h1 className="text-2xl font-semibold mb-4 ">Sign In</h1>
-
-				<div className="w-full">
-					<label htmlFor="email" className="block text-sm font-medium ">
-						Email Address
-					</label>
-					<input
-						type="email"
-						id="email"
-						className="w-full border-dark-linebase mt-1 p-2 border rounded"
-						placeholder="Enter email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-				</div>
-
-				<div className="w-full">
-					<label htmlFor="password" className="block text-sm font-medium ">
-						Password
-					</label>
-					<div className="relative">
-						<input
-							type={isShowPassword ? "text" : "password"}
-							id="password"
-							className="w-full mt-1 p-2 border border-dark-linebase rounded"
-							placeholder="Enter password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-						/>
-						{isShowPassword ? (
-							<div
-								className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
-								onClick={toggleShowPassword}
-							>
-								<AiFillEyeInvisible className="text-textdark" size={20} />
-							</div>
-						) : (
-							<div
-								className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
-								onClick={toggleShowPassword}
-							>
-								<AiOutlineEye className="text-textdark" size={20} />
-							</div>
-						)}
-					</div>
-				</div>
-				<p className="text-sm font-medium">
-					New Customer?{" "}
-					<Link
-						to={redirect ? `/register?redirect=${redirect}` : "/register"}
-						className="text-primary hover:underline"
-					>
-						Register
-					</Link>
-				</p>
-				<button
-					disabled={isLoading}
-					type="submit"
-					className="bg-dark-bg2 flex justify-center mt-4 text-white  px-4 py-2 rounded cursor-pointer my-[1rem]"
+		<section className="flex w-full items-center justify-center pt-[15vh] sm:pt-0">
+			<div className="w-1/2 hidden md:block">
+				<img src="/assets/sideImage.png" className="w-[95%] hidden md:block" />
+			</div>
+			<div className="w-4/5 md:w-1/2 flex justify-center items-center">
+				<form
+					onSubmit={submitHandler}
+					className="md:flex w-full lg:w-2/3 flex-col gap-2 items-center justify-center p-5"
 				>
-					{isLoading ? (
-						<div className="h-6 w-6">
-							<Loader />
+					<h1 className="text-2xl font-semibold mb-4 ">Sign In</h1>
+
+					<div className="w-full">
+						<label htmlFor="email" className="block text-sm font-medium ">
+							Email Address
+						</label>
+						<input
+							type="email"
+							id="email"
+							className="w-full mt-1 py-2 border-b border-gray-400 focus:outline-none"
+							placeholder="Enter email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+					</div>
+
+					<div className="w-full">
+						<label htmlFor="password" className="block text-sm font-medium ">
+							Password
+						</label>
+						<div className="relative">
+							<input
+								type={isShowPassword ? "text" : "password"}
+								id="password"
+								className="w-full mt-1 py-2  border-b border-gray-400 focus:outline-none rounded"
+								placeholder="Enter password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+							{isShowPassword ? (
+								<div
+									className="absolute  py-4 px-2 right-0 top-0  hover:cursor-pointer"
+									onClick={toggleShowPassword}
+								>
+									<AiFillEyeInvisible className="" size={20} />
+								</div>
+							) : (
+								<div
+									className="absolute py-4 px-2 right-0 top-0 hover:cursor-pointer"
+									onClick={toggleShowPassword}
+								>
+									<AiOutlineEye className="" size={20} />
+								</div>
+							)}
 						</div>
-					) : (
-						"Sign In"
-					)}
-				</button>
-			</form>
+					</div>
+
+					<div className="flex  w-full justify-between items-center">
+						<button
+							disabled={isLoading}
+							type="submit"
+							className="flex justify-center mt-4 bg-button-red text-white  px-4 py-2 rounded cursor-pointer my-[1rem]"
+						>
+							{isLoading ? (
+								<div className="h-6 w-6">
+									<Loader />
+								</div>
+							) : (
+								"Sign In"
+							)}
+						</button>
+						<p className="text-sm font-medium">
+							New Customer?{" "}
+							<Link
+								to={redirect ? `/register?redirect=${redirect}` : "/register"}
+								className="text-primary hover:underline"
+							>
+								Register
+							</Link>
+						</p>
+					</div>
+				</form>
+			</div>
 		</section>
 	);
 };
