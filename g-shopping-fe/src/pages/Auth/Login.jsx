@@ -47,7 +47,7 @@ const Login = () => {
 	return (
 		<section className="flex w-full items-center justify-center pt-[15vh] sm:pt-0">
 			<div className="w-1/2 hidden md:block">
-				<img src="/assets/sideImage.png" className="w-[95%] hidden md:block" />
+				<img src="/assets/sideImage.png" className="w-[90%] hidden md:block" />
 			</div>
 			<div className="w-4/5 md:w-1/2 flex justify-center items-center">
 				<form

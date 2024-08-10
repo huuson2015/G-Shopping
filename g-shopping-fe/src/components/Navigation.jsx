@@ -128,7 +128,10 @@ const RenderAuthenticateOfUser = () => {
 									</Link>
 								</MenuItem>
 								<MenuItem>
-									<Link className="flex items-center gap-2 p-2" to="/login">
+									<Link
+										className="flex items-center gap-2 p-2"
+										to="/admin/categories"
+									>
 										<AiTwotoneAppstore size={20} />
 										Category
 									</Link>
@@ -194,7 +197,7 @@ const Navigation = () => {
 	};
 
 	return (
-		<nav className="fixed flex justify-between top-0 z-40 w-screen items-center overflow-hidden bg-white px-6 sm:px-8 lg:px-[8.438rem] py-4 lg:py-10 border-b">
+		<nav className="fixed flex justify-between top-0 z-30 w-screen items-center overflow-hidden bg-white px-6 sm:px-8 lg:px-[8.438rem] py-4 lg:py-10 border-b">
 			<Link to="/" className="font-bold text-xl">
 				GShopping
 			</Link>

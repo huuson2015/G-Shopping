@@ -9,7 +9,6 @@ import {
 	useGetUsersQuery,
 	useUpdateUserMutation,
 } from "../../redux/api/userApiSlice";
-import AdminMenu from "./AdminMenu";
 import ConfirmModal from "./Modals/ConfirmModal";
 
 const UserList = () => {
@@ -35,6 +34,7 @@ const UserList = () => {
 	const deleteHandler = async (id) => {
 		try {
 			await deleteUser(id);
+			toast.success("Delete this user success!");
 			refetch();
 		} catch (err) {
 			toast.error(err?.data?.message || err.error);
@@ -62,8 +62,8 @@ const UserList = () => {
 	};
 
 	return (
-		<div className="p-4">
-			<h1 className="text-2xl font-semibold mb-4">Users</h1>
+		<div className="px-6 sm:px-8 lg:px-[8.438rem]">
+			<h1 className="text-2xl font-semibold mb-4 text-black">Users</h1>
 			{isLoading ? (
 				<Loader />
 			) : error ? (
@@ -71,20 +71,15 @@ const UserList = () => {
 					{error?.data?.message || error.error}
 				</Message>
 			) : (
-				<div className="flex flex-col md:flex-row">
-					<AdminMenu />
-					<table className="w-full border">
+				<div className="flex flex-col md:flex-row ">
+					<table className="w-full border rounded">
 						<thead>
-							<tr>
-								<th className="px-4 py-2 border-r border-b text-left">ID</th>
-								<th className="px-4 py-2 border-r border-b  text-left">NAME</th>
-								<th className="px-4 py-2 border-r border-b  text-left">
-									EMAIL
-								</th>
-								<th className="px-4 py-2 border-r border-b  text-left">
-									ADMIN
-								</th>
-								<th className="px-4 py-2 border-b">Action</th>
+							<tr className="text-left">
+								<th className="px-4 py-2">ID</th>
+								<th className="px-4 py-2">NAME</th>
+								<th className="px-4 py-2">EMAIL</th>
+								<th className="px-4 py-2">ADMIN</th>
+								<th className="px-4 py-2">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -92,62 +87,12 @@ const UserList = () => {
 								<tr key={user._id}>
 									<td className="px-4 py-2">{user._id}</td>
 									<td className="px-4 py-2">
-										{editableUserId === user._id ? (
-											<div className="flex items-center">
-												<input
-													type="text"
-													value={editableUserName}
-													onChange={(e) => setEditableUserName(e.target.value)}
-													className="w-full p-2 border rounded-lg"
-												/>
-												<button
-													onClick={() => updateHandler(user._id)}
-													className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
-												>
-													<FaCheck />
-												</button>
-											</div>
-										) : (
-											<div className="flex items-center">
-												{user.username}{" "}
-												<button
-													onClick={() =>
-														toggleEdit(user._id, user.username, user.email)
-													}
-												>
-													<FaEdit className="ml-[1rem]" />
-												</button>
-											</div>
-										)}
+										<div className="flex items-center">{user.username} </div>
 									</td>
 									<td className="px-4 py-2">
-										{editableUserId === user._id ? (
-											<div className="flex items-center">
-												<input
-													type="text"
-													value={editableUserEmail}
-													onChange={(e) => setEditableUserEmail(e.target.value)}
-													className="w-full p-2 border rounded-lg"
-												/>
-												<button
-													onClick={() => updateHandler(user._id)}
-													className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
-												>
-													<FaCheck />
-												</button>
-											</div>
-										) : (
-											<div className="flex items-center">
-												<a href={`mailto:${user.email}`}>{user.email}</a>{" "}
-												<button
-													onClick={() =>
-														toggleEdit(user._id, user.name, user.email)
-													}
-												>
-													<FaEdit className="ml-[1rem]" />
-												</button>
-											</div>
-										)}
+										<div className="flex items-center">
+											<a href={`mailto:${user.email}`}>{user.email}</a>{" "}
+										</div>
 									</td>
 									<td className="px-4 py-2">
 										{user.isAdmin ? (
@@ -165,6 +110,12 @@ const UserList = () => {
 												>
 													<FaTrash />
 												</button>
+												<ConfirmModal
+													open={isModalConfirmOpen}
+													message={"Are you sure to delete this user?"}
+													action={() => deleteHandler(user._id)}
+													onClose={toggleModalConfirm}
+												/>
 											</div>
 										)}
 									</td>
@@ -174,7 +125,6 @@ const UserList = () => {
 					</table>
 				</div>
 			)}
-			<ConfirmModal open={isModalConfirmOpen} onClose={toggleModalConfirm} />
 		</div>
 	);
 };

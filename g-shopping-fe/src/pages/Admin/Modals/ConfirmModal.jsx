@@ -3,20 +3,38 @@ import PropTypes from "prop-types";
 
 const ConfirmModal = ({ action, message, onClose, open }) => {
 	return (
-		<Dialog open={open} onClose={onClose}>
-			<DialogPanel>
-				<div className="flex flex-col gap-4 p-4 border max-w-md">
-					<h1 className="text-xl font-semibold">{message}</h1>
-					<div className="flex gap-4">
-						<button className="btn btn-error" onClick={action}>
-							Yes
-						</button>
-						<button onClick={onClose} className="btn btn-primary">
-							No
-						</button>
-					</div>
+		<Dialog
+			open={open}
+			onClose={onClose}
+			as="div"
+			className="relative z-10 focus:outline-none"
+		>
+			<div className="fixed inset-0 z-50 w-screen overflow-y-auto">
+				<div className="flex min-h-full items-end justify-end p-4">
+					<DialogPanel
+						transition
+						className="w-full max-w-sm bg-black rounded-xl bg-primary p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+					>
+						<div className="flex flex-col gap-4 p-4 max-w-md">
+							<h1 className="text-lg font-semibold text-white">{message}</h1>
+							<div className="flex gap-4">
+								<button
+									className="w-20 bg-button-red px-3 py-2 text-white font-bold rounded-md"
+									onClick={action}
+								>
+									Yes
+								</button>
+								<button
+									className="w-20 bg-button-green px-3 py-2 text-white font-bold rounded-md"
+									onClick={onClose}
+								>
+									No
+								</button>
+							</div>
+						</div>
+					</DialogPanel>
 				</div>
-			</DialogPanel>
+			</div>
 		</Dialog>
 	);
 };
