@@ -116,7 +116,7 @@ const CategoryList = () => {
 				<div className="flex mb-5 justify-between">
 					<h1 className="font-medium text-2xl">Manage Categories</h1>
 					<button
-						className="px-3 py-3 rounded-md text-red-500 hover:bg-red-500 hover:text-white bg-white border-red-500 border"
+						className="px-3 py-3 rounded-md text-white bg-button-red hover:bg-button-hover1 "
 						onClick={() => toggleModalAdd()}
 					>
 						<RxPlus />
@@ -133,7 +133,7 @@ const CategoryList = () => {
 					{categories?.map((category) => (
 						<div className="relative group" key={category._id}>
 							<div
-								className=" bg-primary-dark text-white py-2 px-4 rounded-lg m-3 hover:bg-button-hover2 hover:text-text-dark capitalize"
+								className=" bg-primary-dark text-white py-2 px-4 rounded-md m-3 hover:bg-button-hover2 hover:text-text-dark capitalize"
 								onClick={() => {
 									{
 										setIsModalUpdateOpen(true);
