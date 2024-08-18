@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaTrash, FaEdit, FaCheck, FaTimes } from "react-icons/fa";
+import { FaTrash, FaCheck, FaTimes } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 
@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import {
 	useDeleteUserMutation,
 	useGetUsersQuery,
-	useUpdateUserMutation,
 } from "../../redux/api/userApiSlice";
 import ConfirmModal from "./Modals/ConfirmModal";
 
@@ -16,16 +15,11 @@ const UserList = () => {
 
 	const [deleteUser] = useDeleteUserMutation();
 
-	const [editableUserId, setEditableUserId] = useState(null);
-	const [editableUserName, setEditableUserName] = useState("");
-	const [editableUserEmail, setEditableUserEmail] = useState("");
 	const [isModalConfirmOpen, setIsModalConfirmOpen] = useState(false);
 
 	const toggleModalConfirm = () => {
 		setIsModalConfirmOpen(!isModalConfirmOpen);
 	};
-
-	const [updateUser] = useUpdateUserMutation();
 
 	useEffect(() => {
 		refetch();
@@ -35,26 +29,6 @@ const UserList = () => {
 		try {
 			await deleteUser(id);
 			toast.success("Delete this user success!");
-			refetch();
-		} catch (err) {
-			toast.error(err?.data?.message || err.error);
-		}
-	};
-
-	const toggleEdit = (id, username, email) => {
-		setEditableUserId(id);
-		setEditableUserName(username);
-		setEditableUserEmail(email);
-	};
-
-	const updateHandler = async (id) => {
-		try {
-			await updateUser({
-				userId: id,
-				username: editableUserName,
-				email: editableUserEmail,
-			});
-			setEditableUserId(null);
 			refetch();
 		} catch (err) {
 			toast.error(err?.data?.message || err.error);

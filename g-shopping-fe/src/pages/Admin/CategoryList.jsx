@@ -5,15 +5,34 @@ import {
 	useUpdateCategoryMutation,
 	useDeleteCategoryMutation,
 } from "../../redux/api/categoryApiSlice.js";
+import { RxCross2, RxPlus } from "react-icons/rx";
 
 import { toast } from "react-toastify";
+import ConfirmModal from "./Modals/ConfirmModal";
+import CategoryModal from "./Modals/CategoryModal.jsx";
 
 const CategoryList = () => {
-	const { data: categories } = useFetchCategoriesQuery();
+	const { data: categories, refetch } = useFetchCategoriesQuery();
+
 	const [name, setName] = useState("");
-	const [selectedCategory, setSelectedCategory] = useState(null);
 	const [updatingName, setUpdatingName] = useState("");
-	const [modalVisible, setModalVisible] = useState(false);
+	const [selectedCategory, setSelectedCategory] = useState(null);
+
+	const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
+	const [isModalAddOpen, setIsModalAddOpen] = useState(false);
+	const [isModalConfirmOpen, setIsModalConfirmOpen] = useState(false);
+
+	const toggleModalAdd = () => {
+		setIsModalAddOpen(!isModalAddOpen);
+	};
+
+	const toggleModalConfirm = () => {
+		setIsModalConfirmOpen(!isModalConfirmOpen);
+	};
+
+	const toggleModalUpdate = () => {
+		setIsModalUpdateOpen(!isModalUpdateOpen);
+	};
 
 	const [createCategory] = useCreateCategoryMutation();
 	const [updateCategory] = useUpdateCategoryMutation();
@@ -33,6 +52,8 @@ const CategoryList = () => {
 				toast.error(result.error);
 			} else {
 				setName("");
+				setIsModalAddOpen(false);
+				refetch();
 				toast.success(`${result.name} is created.`);
 			}
 		} catch (error) {
@@ -63,7 +84,8 @@ const CategoryList = () => {
 				toast.success(`${result.name} is updated`);
 				setSelectedCategory(null);
 				setUpdatingName("");
-				setModalVisible(false);
+				setIsModalUpdateOpen(false);
+				refetch();
 			}
 		} catch (error) {
 			console.error(error);
@@ -78,8 +100,9 @@ const CategoryList = () => {
 				toast.error(result.error);
 			} else {
 				toast.success(`${result.name} is deleted.`);
+				refetch();
 				setSelectedCategory(null);
-				setModalVisible(false);
+				setIsModalConfirmOpen(false);
 			}
 		} catch (error) {
 			console.error(error);
@@ -88,49 +111,63 @@ const CategoryList = () => {
 	};
 
 	return (
-		<div className="ml-[10rem] flex flex-col md:flex-row">
-			<div className="md:w-3/4 p-3">
-				<div className="h-12">Manage Categories</div>
-				<table className="w-full border">
-					<thead>
-						<tr className="text-left">
-							<th>Category</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						{categories?.map((category) => (
-							<tr key={category._id}>
-								<td>{category.name}</td>
-								<td>
-									<button
-										className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-										onClick={() => {}}
-									>
-										Edit
-									</button>
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
+		<div className="md:mx-[10rem] flex flex-col md:flex-row">
+			<div className="w-full p-3">
+				<div className="flex mb-5 justify-between">
+					<h1 className="font-medium text-2xl">Manage Categories</h1>
+					<button
+						className="px-3 py-3 rounded-md text-red-500 hover:bg-red-500 hover:text-white bg-white border-red-500 border"
+						onClick={() => toggleModalAdd()}
+					>
+						<RxPlus />
+					</button>
+					<CategoryModal
+						value={name}
+						setValue={(value) => setName(value)}
+						handleSubmit={handleCreateCategory}
+						open={isModalAddOpen}
+						onClose={toggleModalAdd}
+					/>
+				</div>
 				<div className="flex flex-wrap">
 					{categories?.map((category) => (
-						<div key={category._id}>
-							<button
-								className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
+						<div className="relative group" key={category._id}>
+							<div
+								className=" bg-primary-dark text-white py-2 px-4 rounded-lg m-3 hover:bg-button-hover2 hover:text-text-dark capitalize"
 								onClick={() => {
 									{
-										setModalVisible(true);
+										setIsModalUpdateOpen(true);
 										setSelectedCategory(category);
 										setUpdatingName(category.name);
 									}
 								}}
 							>
 								{category.name}
+							</div>
+							<button
+								className="p-[0.5px] z-40 text-red-500 hover:bg-red-500 hover:text-white bg-white border-red-500 rounded-full border hidden group-hover:block absolute top-1 right-1"
+								onClick={() => {
+									setSelectedCategory(category);
+									toggleModalConfirm();
+								}}
+							>
+								<RxCross2 />
 							</button>
 						</div>
 					))}
+					<CategoryModal
+						value={updatingName}
+						setValue={(value) => setUpdatingName(value)}
+						handleSubmit={handleUpdateCategory}
+						open={isModalUpdateOpen}
+						onClose={toggleModalUpdate}
+					/>
+					<ConfirmModal
+						open={isModalConfirmOpen}
+						message={"Are you sure to delete this category?"}
+						action={handleDeleteCategory}
+						onClose={toggleModalConfirm}
+					/>
 				</div>
 			</div>
 		</div>
