@@ -45,30 +45,42 @@ const UserList = () => {
 					{error?.data?.message || error.error}
 				</Message>
 			) : (
-				<div className="flex flex-col md:flex-row ">
-					<table className="w-full border rounded">
+				<div className="flex flex-col md:flex-row border border-primary-dark rounded-md">
+					<table className="w-full">
 						<thead>
 							<tr className="text-left">
-								<th className="px-4 py-2">ID</th>
-								<th className="px-4 py-2">NAME</th>
-								<th className="px-4 py-2">EMAIL</th>
-								<th className="px-4 py-2">ADMIN</th>
-								<th className="px-4 py-2">Action</th>
+								<th className="px-4 py-2 border-r border-b border-primary-dark">
+									ID
+								</th>
+								<th className="px-4 py-2 border-r border-b border-primary-dark">
+									Name
+								</th>
+								<th className="px-4 py-2 border-r border-b border-primary-dark">
+									Email
+								</th>
+								<th className="px-4 py-2 border-r border-b border-primary-dark">
+									Admin
+								</th>
+								<th className="px-4 py-2 border-b border-primary-dark">
+									Action
+								</th>
 							</tr>
 						</thead>
 						<tbody>
 							{users.map((user) => (
 								<tr key={user._id}>
-									<td className="px-4 py-2">{user._id}</td>
-									<td className="px-4 py-2">
+									<td className="px-4 py-2  border-r border-primary-dark">
+										{user._id}
+									</td>
+									<td className="px-4 py-2 border-r border-primary-dark">
 										<div className="flex items-center">{user.username} </div>
 									</td>
-									<td className="px-4 py-2">
+									<td className="px-4 py-2 border-r border-primary-dark">
 										<div className="flex items-center">
 											<a href={`mailto:${user.email}`}>{user.email}</a>{" "}
 										</div>
 									</td>
-									<td className="px-4 py-2">
+									<td className="px-4 py-2 border-r border-primary-dark">
 										{user.isAdmin ? (
 											<FaCheck style={{ color: "green" }} />
 										) : (
