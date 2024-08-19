@@ -133,7 +133,7 @@ const CategoryList = () => {
 					{categories?.map((category) => (
 						<div className="relative group" key={category._id}>
 							<div
-								className=" bg-primary-dark text-white py-2 px-4 rounded-md m-3 hover:bg-button-hover2 hover:text-text-dark capitalize"
+								className=" bg-primary-dark text-white py-2 px-4 rounded-md m-3 hover:cursor-pointer hover:bg-button-hover2 hover:text-text-dark capitalize"
 								onClick={() => {
 									{
 										setIsModalUpdateOpen(true);
