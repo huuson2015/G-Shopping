@@ -1,7 +1,14 @@
 import { Dialog, DialogPanel, DialogBackdrop } from "@headlessui/react";
 import PropTypes from "prop-types";
 
-const CategoryModal = ({ value, setValue, handleSubmit, onClose, open }) => {
+const CategoryModal = ({
+	title,
+	value,
+	setValue,
+	handleSubmit,
+	onClose,
+	open,
+}) => {
 	return (
 		<Dialog
 			open={open}
@@ -22,7 +29,7 @@ const CategoryModal = ({ value, setValue, handleSubmit, onClose, open }) => {
 						onSubmit={handleSubmit}
 						className="flex flex-col gap-4 p-4 max-w-md"
 					>
-						<h1 className="text-xl font-medium text-black">Update category</h1>
+						<h1 className="text-xl font-medium text-primary-dark">{title}</h1>
 						<input
 							type="text"
 							className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2"
@@ -53,6 +60,7 @@ const CategoryModal = ({ value, setValue, handleSubmit, onClose, open }) => {
 };
 
 CategoryModal.propTypes = {
+	title: PropTypes.string.isRequired,
 	value: PropTypes.string,
 	setValue: PropTypes.func.isRequired,
 	handleSubmit: PropTypes.func.isRequired,

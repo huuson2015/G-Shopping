@@ -111,64 +111,64 @@ const CategoryList = () => {
 	};
 
 	return (
-		<div className="md:mx-[10rem] flex flex-col md:flex-row">
-			<div className="w-full p-3">
-				<div className="flex mb-5 justify-between">
-					<h1 className="font-medium text-2xl">Manage Categories</h1>
-					<button
-						className="px-3 py-3 rounded-md text-white bg-button-red hover:bg-button-hover1 "
-						onClick={() => toggleModalAdd()}
-					>
-						<RxPlus />
-					</button>
-					<CategoryModal
-						value={name}
-						setValue={(value) => setName(value)}
-						handleSubmit={handleCreateCategory}
-						open={isModalAddOpen}
-						onClose={toggleModalAdd}
-					/>
-				</div>
-				<div className="flex flex-wrap">
-					{categories?.map((category) => (
-						<div className="relative group" key={category._id}>
-							<div
-								className=" bg-primary-dark text-white py-2 px-4 rounded-md m-3 hover:cursor-pointer hover:bg-button-hover2 hover:text-text-dark capitalize"
-								onClick={() => {
-									{
-										setIsModalUpdateOpen(true);
-										setSelectedCategory(category);
-										setUpdatingName(category.name);
-									}
-								}}
-							>
-								{category.name}
-							</div>
-							<button
-								className="p-[0.5px] z-40 text-red-500 hover:bg-red-500 hover:text-white bg-white border-red-500 rounded-full border hidden group-hover:block absolute top-1 right-1"
-								onClick={() => {
+		<div className="px-6 sm:px-8 lg:px-[8.438rem] mt-5">
+			<div className="flex mb-5 justify-between">
+				<h1 className="font-medium text-2xl">Manage Categories</h1>
+				<button
+					className="px-3 py-3 rounded-md text-white bg-button-red hover:bg-button-hover1 "
+					onClick={() => toggleModalAdd()}
+				>
+					<RxPlus />
+				</button>
+				<CategoryModal
+					title="Add Category"
+					value={name}
+					setValue={(value) => setName(value)}
+					handleSubmit={handleCreateCategory}
+					open={isModalAddOpen}
+					onClose={toggleModalAdd}
+				/>
+			</div>
+			<div className="flex flex-wrap">
+				{categories?.map((category) => (
+					<div className="relative group" key={category._id}>
+						<div
+							className=" bg-primary-dark text-white py-2 px-4 rounded-md m-3 hover:cursor-pointer hover:bg-button-hover2 hover:text-text-dark capitalize"
+							onClick={() => {
+								{
+									setIsModalUpdateOpen(true);
 									setSelectedCategory(category);
-									toggleModalConfirm();
-								}}
-							>
-								<RxCross2 />
-							</button>
+									setUpdatingName(category.name);
+								}
+							}}
+						>
+							{category.name}
 						</div>
-					))}
-					<CategoryModal
-						value={updatingName}
-						setValue={(value) => setUpdatingName(value)}
-						handleSubmit={handleUpdateCategory}
-						open={isModalUpdateOpen}
-						onClose={toggleModalUpdate}
-					/>
-					<ConfirmModal
-						open={isModalConfirmOpen}
-						message={"Are you sure to delete this category?"}
-						action={handleDeleteCategory}
-						onClose={toggleModalConfirm}
-					/>
-				</div>
+						<button
+							className="p-[0.5px] z-40 text-red-500 hover:bg-red-500 hover:text-white bg-white border-red-500 rounded-full border hidden group-hover:block absolute top-1 right-1"
+							onClick={() => {
+								setSelectedCategory(category);
+								toggleModalConfirm();
+							}}
+						>
+							<RxCross2 />
+						</button>
+					</div>
+				))}
+				<CategoryModal
+					title="Update Category"
+					value={updatingName}
+					setValue={(value) => setUpdatingName(value)}
+					handleSubmit={handleUpdateCategory}
+					open={isModalUpdateOpen}
+					onClose={toggleModalUpdate}
+				/>
+				<ConfirmModal
+					open={isModalConfirmOpen}
+					message={"Are you sure to delete this category?"}
+					action={handleDeleteCategory}
+					onClose={toggleModalConfirm}
+				/>
 			</div>
 		</div>
 	);

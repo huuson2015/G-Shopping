@@ -122,7 +122,10 @@ const RenderAuthenticateOfUser = () => {
 									</Link>
 								</MenuItem>
 								<MenuItem>
-									<Link className="flex items-center gap-2 p-2" to="/login">
+									<Link
+										className="flex items-center gap-2 p-2"
+										to="/admin/products"
+									>
 										<AiOutlineShopping size={20} />
 										Products
 									</Link>
@@ -226,13 +229,13 @@ const Navigation = () => {
 					<Button onClick={toggleSidebar} className="relative">
 						<AiOutlineClose
 							size={24}
-							className={`text-black absolute ${
+							className={`text-primary-dark absolute ${
 								showSidebar ? " opacity-100" : "opacity-0"
 							} transition-all duration-300`}
 						/>
 						<AiOutlineMenu
 							size={24}
-							className={`text-black ${
+							className={`text-primary-dark ${
 								showSidebar ? " opacity-0" : "opacity-100"
 							} transition-all duration-300`}
 						/>

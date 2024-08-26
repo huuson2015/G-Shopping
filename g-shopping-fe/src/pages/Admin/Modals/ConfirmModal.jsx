@@ -20,7 +20,9 @@ const ConfirmModal = ({ action, message, onClose, open }) => {
 						className="w-full max-w-sm bg-white rounded-md p-6 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
 					>
 						<div className="flex flex-col gap-4 p-4 max-w-md">
-							<h1 className="text-lg font-semibold text-black">{message}</h1>
+							<h1 className="text-lg font-semibold text-primary-dark">
+								{message}
+							</h1>
 							<div className="flex gap-4">
 								<button
 									className="w-1/2 bg-button-red px-3 py-2 text-white font-bold rounded-md"
