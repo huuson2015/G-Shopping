@@ -54,7 +54,7 @@ const AddProductModal = ({ reload, open, onClose }) => {
 			const { data } = await createProduct(productData);
 
 			if (data.error) {
-				toast.error("Product create failed. Try Again.");
+				toast.error(data.error);
 			} else {
 				toast.success(`${data.name} is created`);
 				onClose();

@@ -45,10 +45,6 @@ const ConfirmModal = ({ action, message, onClose, open }) => {
 	);
 };
 
-ConfirmModal.defaultProps = {
-	message: "Are you sure?",
-};
-
 ConfirmModal.propTypes = {
 	message: PropTypes.string,
 	onClose: PropTypes.func.isRequired,
