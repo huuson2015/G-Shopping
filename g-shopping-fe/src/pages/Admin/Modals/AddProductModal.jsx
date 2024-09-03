@@ -81,14 +81,14 @@ const AddProductModal = ({ reload, open, onClose }) => {
 				transition
 				className="fixed inset-0 bg-black/20 duration-300 ease-out data-[closed]:opacity-0"
 			/>
-			<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+			<div className="fixed inset-0 flex w-screen items-center justify-center p-2">
 				<DialogPanel
 					transition
 					className="w-full max-w-md bg-white rounded-md p-6 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
 				>
 					<form
 						onSubmit={handleSubmit}
-						className="flex flex-col gap-2 md:gap-4 p-4 max-w-md"
+						className="flex flex-col gap-2 md:gap-4 max-w-md"
 					>
 						<h1 className="text-xl font-medium text-primary-dark">
 							Add Product
@@ -102,7 +102,9 @@ const AddProductModal = ({ reload, open, onClose }) => {
 									name="image"
 									accept="image/*"
 									onChange={uploadFileHandler}
-									className={!product.image ? "hidden" : "text-primary-dark"}
+									className={`w-full ${
+										!product.image ? "hidden" : "text-primary-dark"
+									}`}
 								/>
 							</label>
 						</div>
