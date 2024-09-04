@@ -75,7 +75,7 @@ const ProductList = () => {
 					{error?.data?.message || error.error}
 				</Message>
 			) : (
-				<div className="flex flex-wrap gap-4 justify-around items-center">
+				<div className="flex flex-wrap gap-4 mb-10 justify-around items-center">
 					{products.map((product) => (
 						<ProductItem
 							key={product._id}
@@ -87,18 +87,22 @@ const ProductList = () => {
 					))}
 				</div>
 			)}
-			<UpdateProductModal
-				productId={selectedProduct?._id}
-				reload={refetch}
-				open={isModalUpdateOpen}
-				onClose={toggleModalUpdate}
-			/>
-			<ConfirmModal
-				action={handleDelete}
-				message="Are you sure for delete this product?"
-				open={isModalConfirmDeleteOpen}
-				onClose={toggleModalConfirmDelete}
-			/>
+			{selectedProduct && (
+				<>
+					<UpdateProductModal
+						productId={selectedProduct?._id}
+						reload={refetch}
+						open={isModalUpdateOpen}
+						onClose={toggleModalUpdate}
+					/>
+					<ConfirmModal
+						action={handleDelete}
+						message="Are you sure for delete this product?"
+						open={isModalConfirmDeleteOpen}
+						onClose={toggleModalConfirmDelete}
+					/>
+				</>
+			)}
 		</div>
 	);
 };

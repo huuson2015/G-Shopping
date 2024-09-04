@@ -27,7 +27,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 
 	useEffect(() => {
 		if (productData) setProduct(productData);
-	}, [productData]);
+	}, [productData, productId]);
 
 	const [uploadProductImage] = useUploadProductImageMutation();
 	const [updateProduct] = useUpdateProductMutation();
@@ -59,7 +59,6 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 			formData.append("quantity", product.quantity);
 			formData.append("brand", product.brand);
 			formData.append("countInStock", product.countInStock);
-			console.log(productId);
 
 			const { data } = await updateProduct({
 				productId: productId,
@@ -110,8 +109,16 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 							Update Product
 						</h1>
 						<div>
-							<label className="border bg-gray-200 text-primary-dark px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-5 md:py-10">
-								{product.image ? product.image.name : "Upload Image"}
+							<label className="border bg-gray-200 text-primary-dark px-4 gap-4 flex-col w-full text-center rounded-lg cursor-pointer font-bold justify-center items-center flex py-5 md:py-10">
+								{product.image ? (
+									<img
+										className=" object-cover size-40 rounded-lg"
+										src={product.image}
+										alt=""
+									/>
+								) : (
+									"Upload Image"
+								)}
 
 								<input
 									type="file"
@@ -278,7 +285,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 };
 
 UpdateProductModal.propTypes = {
-	productId: PropTypes.string,
+	productId: PropTypes.string.isRequired,
 	open: PropTypes.bool.isRequired,
 	onClose: PropTypes.func.isRequired,
 	reload: PropTypes.func.isRequired,
