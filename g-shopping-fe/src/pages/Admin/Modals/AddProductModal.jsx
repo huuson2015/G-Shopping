@@ -108,7 +108,7 @@ const AddProductModal = ({ reload, open, onClose }) => {
 								/>
 							</label>
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className="flex flex-col md:gap-2">
 							<div>
 								<label
 									htmlFor="name"
@@ -161,7 +161,7 @@ const AddProductModal = ({ reload, open, onClose }) => {
 									>
 										{categories?.map((c) => (
 											<option key={c._id} className="capitalize" value={c._id}>
-												<p className="uppercase">{c.name}</p>
+												{c.name}
 											</option>
 										))}
 									</select>

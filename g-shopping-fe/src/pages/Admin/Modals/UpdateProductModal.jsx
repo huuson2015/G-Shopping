@@ -106,13 +106,13 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 						className="flex flex-col gap-2 md:gap-4 max-w-md"
 					>
 						<h1 className="text-xl font-medium text-primary-dark">
-							Update Product
+							Edit Product
 						</h1>
 						<div>
-							<label className="border bg-gray-200 text-primary-dark px-4 gap-4 flex-col w-full text-center rounded-lg cursor-pointer font-bold justify-center items-center flex py-5 md:py-10">
+							<label className="border bg-gray-200 text-primary-dark px-4 gap-4 flex-col w-full text-center rounded-lg cursor-pointer font-bold justify-center items-center flex py-4 md:py-10">
 								{product.image ? (
 									<img
-										className=" object-cover size-40 rounded-lg"
+										className="object-cover size-16 md:size-40 rounded-lg"
 										src={product.image}
 										alt=""
 									/>
@@ -131,7 +131,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 								/>
 							</label>
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className="flex flex-col md:gap-2">
 							<div>
 								<label
 									htmlFor="name"

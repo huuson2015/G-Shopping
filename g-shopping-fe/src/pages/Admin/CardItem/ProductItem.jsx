@@ -1,5 +1,6 @@
 import moment from "moment";
 import { PropTypes } from "prop-types";
+import { RxCross2 } from "react-icons/rx";
 
 const ProductItem = ({
 	product,
@@ -8,7 +9,17 @@ const ProductItem = ({
 	toggleModalConfirmDelete,
 }) => {
 	return (
-		<div className="flex w-full flex-col md:flex-row shadow-lg rounded-md">
+		<div className="group hover:cursor-pointer relative flex flex-row shadow-lg rounded-md">
+			<button
+				type="button"
+				onClick={() => {
+					toggleModalConfirmDelete();
+					setSelectedProduct(product);
+				}}
+				className="absolute md:hidden -top-1 -right-1 rounded-full size-6 group-hover:flex items-center justify-center flex bg-white text-button-red hover:bg-button-red hover:text-white border border-button-red"
+			>
+				<RxCross2 />
+			</button>
 			<div className="rounded-md w-1/4 p-4">
 				<img
 					src={product?.image}
@@ -25,7 +36,7 @@ const ProductItem = ({
 					</p>
 				</div>
 				<p className="text-gray-400 xl:w-[30rem] lg:w-[30rem] md:w-[20rem] sm:w-[10rem] text-sm mb-4">
-					{product?.description?.substring(0, 160)}...
+					{product?.description?.substring(0, 80)}...
 				</p>
 				<div className="flex justify-between">
 					<div className="flex gap-2">
@@ -36,16 +47,7 @@ const ProductItem = ({
 							}}
 							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-button-red rounded-lg hover:bg-button-hover1 hover:cursor-pointer"
 						>
-							Detail
-						</div>
-						<div
-							onClick={() => {
-								toggleModalConfirmDelete();
-								setSelectedProduct(product);
-							}}
-							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-button-red rounded-lg hover:bg-button-hover1 hover:cursor-pointer"
-						>
-							Remove
+							Edit
 						</div>
 					</div>
 					<p>$ {product?.price}</p>

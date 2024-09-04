@@ -5,11 +5,12 @@ import {
 	useUpdateCategoryMutation,
 	useDeleteCategoryMutation,
 } from "../../redux/api/categoryApiSlice.js";
-import { RxCross2, RxPlus } from "react-icons/rx";
+import { RxPlus } from "react-icons/rx";
 
 import { toast } from "react-toastify";
 import ConfirmModal from "./Modals/ConfirmModal";
 import CategoryModal from "./Modals/CategoryModal.jsx";
+import CategoryItem from "./CardItem/CategoryItem.jsx";
 
 const CategoryList = () => {
 	const { data: categories, refetch } = useFetchCategoriesQuery();
@@ -131,29 +132,14 @@ const CategoryList = () => {
 			</div>
 			<div className="flex flex-wrap">
 				{categories?.map((category) => (
-					<div className="relative group" key={category._id}>
-						<div
-							className=" bg-primary-dark text-white py-2 px-4 rounded-md m-3 hover:cursor-pointer hover:bg-button-hover2 hover:text-text-dark capitalize"
-							onClick={() => {
-								{
-									setIsModalUpdateOpen(true);
-									setSelectedCategory(category);
-									setUpdatingName(category.name);
-								}
-							}}
-						>
-							{category.name}
-						</div>
-						<button
-							className="p-[0.5px] z-40 text-red-500 hover:bg-red-500 hover:text-white bg-white border-red-500 rounded-full border hidden group-hover:block absolute top-1 right-1"
-							onClick={() => {
-								setSelectedCategory(category);
-								toggleModalConfirm();
-							}}
-						>
-							<RxCross2 />
-						</button>
-					</div>
+					<CategoryItem
+						key={category._id}
+						category={category}
+						setSelectedCategory={setSelectedCategory}
+						setIsModalUpdateOpen={setIsModalUpdateOpen}
+						setUpdatingName={setUpdatingName}
+						toggleModalConfirm={toggleModalConfirm}
+					/>
 				))}
 				<CategoryModal
 					title="Update Category"
@@ -163,12 +149,14 @@ const CategoryList = () => {
 					open={isModalUpdateOpen}
 					onClose={toggleModalUpdate}
 				/>
-				<ConfirmModal
-					open={isModalConfirmOpen}
-					message={"Are you sure to delete this category?"}
-					action={handleDeleteCategory}
-					onClose={toggleModalConfirm}
-				/>
+				{selectedCategory && (
+					<ConfirmModal
+						open={isModalConfirmOpen}
+						message={`Are you sure to delete ${selectedCategory.name}?`}
+						action={handleDeleteCategory}
+						onClose={toggleModalConfirm}
+					/>
+				)}
 			</div>
 		</div>
 	);
