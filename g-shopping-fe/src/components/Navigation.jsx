@@ -21,6 +21,7 @@ import {
 import { Button, Dialog, DialogPanel } from "@headlessui/react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import SearchBar from "./SearchBar";
+import FavoritesCount from "./../pages/Products/FavoritesCount";
 
 const RenderNavigationItem = () => {
 	return (
@@ -110,7 +111,7 @@ const RenderAuthenticateOfUser = () => {
 								Profile
 							</Link>
 						</MenuItem>
-						{userInfo.isAdmin ? (
+						{userInfo.isAdmin && (
 							<>
 								<MenuItem>
 									<Link
@@ -152,21 +153,6 @@ const RenderAuthenticateOfUser = () => {
 									>
 										<AiOutlineUserSwitch size={20} />
 										Users
-									</Link>
-								</MenuItem>
-							</>
-						) : (
-							<>
-								<MenuItem>
-									<Link className="flex items-center gap-2 p-2" to="/login">
-										<AiOutlineShoppingCart className="" size={20} />
-										Cart
-									</Link>
-								</MenuItem>
-								<MenuItem>
-									<Link className="flex items-center gap-2 p-2" to="/login">
-										<AiOutlineHeart size={20} />
-										Favourite
 									</Link>
 								</MenuItem>
 							</>
@@ -213,10 +199,11 @@ const Navigation = () => {
 					<SearchBar />
 				</div>
 				<Link
-					className="flex hover:text-button-hover2 items-center gap-4"
+					className="flex relative hover:text-button-hover2 items-center gap-4"
 					to="/login"
 				>
 					<AiOutlineHeart size={24} />
+					<FavoritesCount />
 				</Link>
 				<Link
 					className="flex hover:text-button-hover2 items-center "

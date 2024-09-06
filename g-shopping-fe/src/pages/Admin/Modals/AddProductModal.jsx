@@ -59,6 +59,16 @@ const AddProductModal = ({ reload, open, onClose }) => {
 				toast.success(`${data.name} is created`);
 				onClose();
 				reload();
+				setProduct({
+					name: "",
+					image: "",
+					description: "",
+					price: 0,
+					category: "",
+					quantity: 0,
+					brand: "",
+					stock: 0,
+				});
 			}
 		} catch (error) {
 			console.error(error);

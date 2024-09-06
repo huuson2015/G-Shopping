@@ -13,10 +13,12 @@ import AdminRoute from "./pages/Admin/AdminRoute.jsx";
 import UserList from "./pages/Admin/UserList.jsx";
 import CategoryList from "./pages/Admin/CategoryList.jsx";
 import ProductList from "./pages/Admin/ProductList.jsx";
+import Home from "./pages/Home.jsx";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
+			<Route index path="/" element={<Home />} />
 			<Route path="/login" element=<Login /> />
 			<Route path="/register" element=<Register /> />
 			<Route path="/cart" element=<Login /> />

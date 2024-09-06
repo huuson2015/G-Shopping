@@ -9,7 +9,7 @@ const ProductItem = ({
 	toggleModalConfirmDelete,
 }) => {
 	return (
-		<div className="group hover:cursor-pointer relative flex flex-row shadow-lg rounded-md">
+		<div className="group w-full md:w-[49%] hover:cursor-pointer relative flex flex-row shadow-lg rounded-md">
 			<button
 				type="button"
 				onClick={() => {
