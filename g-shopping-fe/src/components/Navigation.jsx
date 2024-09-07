@@ -200,14 +200,14 @@ const Navigation = () => {
 				</div>
 				<Link
 					className="flex relative hover:text-button-hover2 items-center gap-4"
-					to="/login"
+					to="/favorite"
 				>
 					<AiOutlineHeart size={24} />
 					<FavoritesCount />
 				</Link>
 				<Link
 					className="flex hover:text-button-hover2 items-center "
-					to="/login"
+					to="/cart"
 				>
 					<AiOutlineShoppingCart size={24} />
 				</Link>

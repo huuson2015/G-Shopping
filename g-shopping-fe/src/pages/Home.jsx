@@ -33,7 +33,7 @@ const Home = () => {
 					<div>
 						<div className="flex w-full gap-2 flex-wrap justify-between mb-5 mt-2">
 							{data.products.map((product) => (
-								<div key={product._id} className="md:w-[32%]">
+								<div key={product._id} className="w-full md:w-[32%]">
 									<ProductCard product={product} />
 								</div>
 							))}

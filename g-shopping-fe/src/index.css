@@ -33,6 +33,14 @@
 	}
 }
 
+.tab-primary {
+	@apply rounded-full py-3 md:py-2 px-3 text-xs md:text-sm/6 font-semibold text-primary-dark focus:outline-none data-[selected]:bg-button-red data-[selected]:text-white data-[hover]:text-white  data-[hover]:bg-button-hover1 data-[selected]:data-[hover]:bg-button-hover1 data-[focus]:outline-1 data-[focus]:outline-slate-700;
+}
+
+.input-primary {
+	@apply bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2;
+}
+
 svg {
 	fill: currentColor;
 }

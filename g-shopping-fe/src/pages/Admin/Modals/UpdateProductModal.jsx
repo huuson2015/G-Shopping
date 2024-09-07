@@ -145,7 +145,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 									id="name"
 									value={product.name}
 									onChange={handleChange}
-									className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2"
+									className="w-full px-5 py-2 input-primary"
 									placeholder="Product name"
 								/>
 							</div>
@@ -162,7 +162,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 									id="price"
 									value={product.price}
 									onChange={handleChange}
-									className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2"
+									className="w-full px-5 py-2 input-primary"
 									placeholder="Product price"
 								/>
 							</div>
@@ -179,7 +179,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 										name="category"
 										id="category"
 										placeholder="Choose Category"
-										className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2 capitalize"
+										className="w-full px-5 py-2 input-primary capitalize"
 										onChange={handleChange}
 									>
 										{categories?.map((c) => (
@@ -202,7 +202,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 										id="brand"
 										value={product.brand}
 										onChange={handleChange}
-										className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2"
+										className="w-full px-5 py-2 input-primary"
 										placeholder="Product brand"
 									/>
 								</div>
@@ -222,7 +222,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 										id="quantity"
 										value={product.quantity}
 										onChange={handleChange}
-										className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2"
+										className="w-full px-5 py-2 input-primary"
 										placeholder="Product quantity"
 									/>
 								</div>
@@ -239,7 +239,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 										id="countInStock"
 										value={product.countInStock}
 										onChange={handleChange}
-										className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2"
+										className="w-full px-5 py-2 input-primary"
 										placeholder="Product quantity"
 									/>
 								</div>
@@ -256,7 +256,7 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 									id="description"
 									value={product.description}
 									onChange={handleChange}
-									className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2"
+									className="w-full px-5 py-2 input-primary"
 									placeholder="Product description"
 								/>
 							</div>

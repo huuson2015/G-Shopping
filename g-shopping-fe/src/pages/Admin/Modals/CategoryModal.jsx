@@ -32,7 +32,7 @@ const CategoryModal = ({
 						<h1 className="text-xl font-medium text-primary-dark">{title}</h1>
 						<input
 							type="text"
-							className="w-full px-5 py-2 bg-gray-200 border rounded placeholder:text-sm hover:border-button-hover2 focus:outline-none focus:border-button-hover2"
+							className="w-full px-5 py-2 input-primary"
 							placeholder="Category name"
 							value={value}
 							onChange={(e) => setValue(e.target.value)}

@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
 				<img
 					src={product.image}
 					alt={product.name}
-					className="w-full h-[20rem] object-cover rounded"
+					className="w-full h-[15rem] object-cover rounded"
 				/>
 				<HeartButton product={product} />
 			</div>

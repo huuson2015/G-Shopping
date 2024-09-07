@@ -1,6 +1,5 @@
-import { lazy } from "react";
-const Login = lazy(() => import("./Auth/Login"));
-const Home = lazy(() => import("./Auth/Register"));
+import Home from "./Home";
+import Login from "./Auth/Login";
 
 const appRoutes = [
 	{
@@ -15,12 +14,12 @@ const appRoutes = [
 	},
 	{
 		name: "About",
-		path: "/cart",
+		path: "/about",
 		element: <Login />,
 	},
 	{
 		name: "Blogs",
-		path: "/favourite",
+		path: "/blogs",
 		element: <Login />,
 	},
 ];
