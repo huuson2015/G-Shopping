@@ -21,7 +21,8 @@ import {
 import { Button, Dialog, DialogPanel } from "@headlessui/react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import SearchBar from "./SearchBar";
-import FavoritesCount from "./../pages/Products/FavoritesCount";
+import FavoritesCount from "./FavoritesCount";
+import CartCount from "./CartCount";
 
 const RenderNavigationItem = () => {
 	return (
@@ -206,10 +207,11 @@ const Navigation = () => {
 					<FavoritesCount />
 				</Link>
 				<Link
-					className="flex hover:text-button-hover2 items-center "
+					className="flex relative hover:text-button-hover2 items-center "
 					to="/cart"
 				>
 					<AiOutlineShoppingCart size={24} />
+					<CartCount />
 				</Link>
 				<RenderAuthenticateOfUser />
 				<div className="flex items-center lg:hidden">
