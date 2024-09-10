@@ -12,6 +12,7 @@ import {
 	addProductReview,
 	getTopProducts,
 	getNewProducts,
+	filterProducts,
 } from "../controllers/productController.js";
 
 const router = express.Router();
@@ -32,5 +33,7 @@ router
 	.get(getProductById)
 	.put(authenticate, authorizeAdmin, ExpressFormidable(), updateProductDetails)
 	.delete(authenticate, authorizeAdmin, removeProduct);
+
+router.route("/filtered-products").post(filterProducts);
 
 export default router;
