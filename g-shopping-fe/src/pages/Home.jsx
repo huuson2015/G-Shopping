@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetProductsQuery } from "../redux/api/productApiSlice";
-import ProductCard from "./Products/ProductCard";
+import ProductCard from "../components/ProductCard";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import Header from "./../components/Header";
@@ -10,15 +10,19 @@ const Home = () => {
 	const { data, isLoading, isError } = useGetProductsQuery({ keyword });
 	return (
 		<div className="px-6 sm:px-8 lg:px-[8.438rem] mt-5">
-			{!keyword ? <Header /> : null}
 			{isLoading ? (
-				<Loader />
+				<div className="w-full min-h-[60vh] flex justify-center items-center">
+					<div className="size-20">
+						<Loader />
+					</div>
+				</div>
 			) : isError ? (
 				<Message variant="danger">
-					{isError?.data.message || isError.error}
+					{isError?.data?.message || isError.error}
 				</Message>
 			) : (
 				<>
+					{!keyword ? <Header /> : null}
 					<div className="flex justify-between items-center">
 						<h1 className="text-[1.5rem] md:text-[3rem]">Special Products</h1>
 

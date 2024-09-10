@@ -1,15 +1,20 @@
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import HeartButton from "./HeartButton";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const SmallProductCard = ({ product }) => {
 	return (
 		<div className="">
 			<div className="relative">
-				<img
+				<LazyLoadImage
 					src={product.image}
 					alt={product.name}
-					className="h-[10rem] object-cover w-full rounded"
+					effect="blur"
+					wrapperProps={{
+						style: { transitionDelay: "1s" },
+					}}
+					className="w-full h-[15rem] object-cover rounded"
 				/>
 				<HeartButton product={product} />
 			</div>

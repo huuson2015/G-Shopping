@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { logout } from "../redux/features/auth/authSlice";
 import { useLogoutMutation } from "../redux/api/userApiSlice";
-import appRoutes from "../pages/constants";
+import appRoutes from "./constants";
 import {
 	AiOutlineBarChart,
 	AiOutlineClose,

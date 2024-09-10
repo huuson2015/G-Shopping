@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectFavoriteProduct } from "../../redux/features/favorites/favoriteSlice";
-import ProductCard from "./ProductCard";
+import ProductCard from "../../components/ProductCard";
 
 const Favorites = () => {
 	const favorites = useSelector(selectFavoriteProduct);

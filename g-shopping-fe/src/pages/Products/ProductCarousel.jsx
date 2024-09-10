@@ -3,6 +3,7 @@ import Message from "../../components/Message";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import moment from "moment";
 import {
 	FaBox,
@@ -33,7 +34,7 @@ const ProductCarousel = () => {
 					{error?.data?.message || error.error}
 				</Message>
 			) : (
-				<Slider {...settings} className="xl:w-[50rem] sm:block">
+				<Slider {...settings} className="xl:w-[40rem] 3xl:w-[50rem] sm:block">
 					{products.map(
 						({
 							image,
@@ -48,11 +49,15 @@ const ProductCarousel = () => {
 							quantity,
 							countInStock,
 						}) => (
-							<div key={_id}>
-								<img
+							<div className="border-none outline-none" key={_id}>
+								<LazyLoadImage
 									src={image}
 									alt={name}
-									className="w-full rounded-lg object-cover h-[20rem] md:h-[30rem]"
+									effect="blur"
+									wrapperProps={{
+										style: { transitionDelay: "1s" },
+									}}
+									className="w-full rounded-lg object-cover h-[20rem] 3xl:h-[30rem]"
 								/>
 
 								<div className="mt-2 flex flex-col gap-2 md:mt-2">

@@ -6,12 +6,12 @@ import {
 	addFavoriteToLocalStorage,
 	getFavoritesFromLocalStorage,
 	removeFavoriteFromLocalStorage,
-} from "../../utils/localStorage";
+} from "../utils/localStorage";
 import {
 	addToFavorites,
 	removeFromFavorites,
 	setFavorites,
-} from "../../redux/features/favorites/favoriteSlice";
+} from "../redux/features/favorites/favoriteSlice";
 
 const HeartButton = ({ product }) => {
 	const dispatch = useDispatch();

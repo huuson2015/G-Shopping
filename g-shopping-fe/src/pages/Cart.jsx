@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import { addToCart, removeFromCart } from "../redux/features/cart/cartSlice";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Cart = () => {
 	const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Cart = () => {
 										className="flex gap-4 border rounded-lg p-3 items-enter"
 									>
 										<div className="size-[6rem]">
-											<img
+											<LazyLoadImage
 												src={item.image}
 												alt={item.name}
 												className="w-full h-full object-cover rounded"

@@ -1,6 +1,7 @@
 import moment from "moment";
 import { PropTypes } from "prop-types";
 import { RxCross2 } from "react-icons/rx";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ProductItem = ({
 	product,
@@ -21,9 +22,13 @@ const ProductItem = ({
 				<RxCross2 />
 			</button>
 			<div className="rounded-md w-1/4 p-4">
-				<img
+				<LazyLoadImage
 					src={product?.image}
 					alt={product?.name}
+					effect="blur"
+					wrapperProps={{
+						style: { transitionDelay: "1s" },
+					}}
 					className="size-[5rem] md:size-[10rem] object-cover rounded-md"
 				/>
 			</div>

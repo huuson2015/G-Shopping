@@ -1,5 +1,5 @@
-import Home from "./Home";
-import Login from "./Auth/Login";
+import Home from "../pages/Home";
+import Login from "../pages/Auth/Login";
 
 const appRoutes = [
 	{
@@ -9,7 +9,7 @@ const appRoutes = [
 	},
 	{
 		name: "Shop",
-		path: "/shopping",
+		path: "/shop",
 		element: <Login />,
 	},
 	{

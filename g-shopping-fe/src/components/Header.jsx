@@ -1,13 +1,19 @@
 import { useGetTopProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "./Loader";
-import SmallProductCard from "../pages/Products/SmallProductCard";
+import SmallProductCard from "./SmallProductCard";
 import ProductCarousel from "../pages/Products/ProductCarousel";
 
 const Header = () => {
 	const { data, isLoading, error } = useGetTopProductsQuery();
 
 	if (isLoading) {
-		return <Loader />;
+		return (
+			<div className="w-full min-h-[60vh] flex justify-center items-center">
+				<div className="size-20">
+					<Loader />
+				</div>
+			</div>
+		);
 	}
 
 	if (error) {

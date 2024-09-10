@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Ratings from "./Ratings";
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 import Loader from "../../components/Loader";
-import SmallProductCard from "./SmallProductCard";
+import SmallProductCard from "../../components/SmallProductCard";
 import { PropTypes } from "prop-types";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { useState } from "react";
@@ -27,7 +27,13 @@ const ProductTabs = ({
 	};
 
 	if (isLoading) {
-		return <Loader />;
+		return (
+			<div className="w-full min-h-[60vh] flex justify-center items-center">
+				<div className="size-20">
+					<Loader />
+				</div>
+			</div>
+		);
 	}
 
 	return (

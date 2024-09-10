@@ -19,7 +19,7 @@ import moment from "moment";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import HeartButton from "./HeartButton";
+import HeartButton from "../../components/HeartButton";
 import { BiArrowBack } from "react-icons/bi";
 
 const ProductDetails = () => {
@@ -77,7 +77,11 @@ const ProductDetails = () => {
 			</Link>
 
 			{isLoading ? (
-				<Loader />
+				<div className="w-full min-h-[60vh] flex justify-center items-center">
+					<div className="size-20">
+						<Loader />
+					</div>
+				</div>
 			) : error ? (
 				<Message variant="danger">
 					{error?.data?.message || error.message}
