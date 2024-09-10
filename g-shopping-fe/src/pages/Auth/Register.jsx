@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/Loader";
-import { setCredentials } from "../../redux/features/auth/authSlice";
+import Loader from "@components/Loader";
+import { setCredentials } from "@redux/features/auth/authSlice";
 import { toast } from "react-toastify";
-import { useRegisterMutation } from "../../redux/api/userApiSlice";
+import { useRegisterMutation } from "@redux/api/userApiSlice";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 

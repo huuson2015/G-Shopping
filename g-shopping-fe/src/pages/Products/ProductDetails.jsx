@@ -5,9 +5,9 @@ import { toast } from "react-toastify";
 import {
 	useGetProductDetailsQuery,
 	useCreateReviewMutation,
-} from "../../redux/api/productApiSlice";
-import Loader from "../../components/Loader";
-import Message from "../../components/Message";
+} from "@redux/api/productApiSlice";
+import Loader from "@components/Loader";
+import Message from "@components/Message";
 import {
 	FaBox,
 	FaClock,
@@ -18,8 +18,8 @@ import {
 import moment from "moment";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
-import { addToCart } from "../../redux/features/cart/cartSlice";
-import HeartButton from "../../components/HeartButton";
+import { addToCart } from "@redux/features/cart/cartSlice";
+import HeartButton from "@components/HeartButton";
 import { BiArrowBack } from "react-icons/bi";
 
 const ProductDetails = () => {

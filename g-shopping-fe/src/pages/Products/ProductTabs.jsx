@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import Ratings from "./Ratings";
-import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
-import Loader from "../../components/Loader";
-import SmallProductCard from "../../components/SmallProductCard";
+import { useGetTopProductsQuery } from "@redux/api/productApiSlice";
+import Loader from "@components/Loader";
+import SmallProductCard from "@components/SmallProductCard";
 import { PropTypes } from "prop-types";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { useState } from "react";

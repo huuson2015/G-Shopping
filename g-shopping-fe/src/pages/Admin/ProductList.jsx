@@ -3,9 +3,9 @@ import { RxPlus } from "react-icons/rx";
 import {
 	useAllProductsQuery,
 	useDeleteProductMutation,
-} from "../../redux/api/productApiSlice";
-import Loader from "./../../components/Loader";
-import Message from "./../../components/Message";
+} from "@redux/api/productApiSlice";
+import Loader from "@components/Loader";
+import Message from "@components/Message";
 import AddProductModal from "./Modals/AddProductModal";
 import ConfirmModal from "./Modals/ConfirmModal";
 import { toast } from "react-toastify";

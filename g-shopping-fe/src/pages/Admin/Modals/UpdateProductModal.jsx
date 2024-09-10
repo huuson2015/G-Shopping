@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { useState } from "react";
-import { useFetchCategoriesQuery } from "../../../redux/api/categoryApiSlice";
+import { useFetchCategoriesQuery } from "@redux/api/categoryApiSlice";
 import { toast } from "react-toastify";
 import {
 	useUploadProductImageMutation,
 	useUpdateProductMutation,
 	useGetProductByIdQuery,
-} from "../../../redux/api/productApiSlice";
+} from "@redux/api/productApiSlice";
 
 const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 	const [product, setProduct] = useState({

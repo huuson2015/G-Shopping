@@ -4,7 +4,7 @@ import {
 	useCreateCategoryMutation,
 	useUpdateCategoryMutation,
 	useDeleteCategoryMutation,
-} from "../../redux/api/categoryApiSlice.js";
+} from "@redux/api/categoryApiSlice.js";
 import { RxPlus } from "react-icons/rx";
 
 import { toast } from "react-toastify";

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { FaTrash, FaCheck, FaTimes } from "react-icons/fa";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+import Message from "@components/Message";
+import Loader from "@components/Loader";
 
 import { toast } from "react-toastify";
 import {
 	useDeleteUserMutation,
 	useGetUsersQuery,
-} from "../../redux/api/userApiSlice";
+} from "@redux/api/userApiSlice";
 import ConfirmModal from "./Modals/ConfirmModal";
 
 const UserList = () => {

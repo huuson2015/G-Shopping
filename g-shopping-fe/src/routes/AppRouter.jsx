@@ -3,21 +3,21 @@ import { Route, Routes } from "react-router-dom";
 
 import AppContainer from "../container/AppContainer";
 
-import Loader from "./../components/Loader";
-import PrivateRoute from "./../components/PrivateRoute";
-import AdminRoute from "./../pages/Admin/AdminRoute";
+import Loader from "@components/Loader";
+import PrivateRoute from "@components/PrivateRoute";
+import AdminRoute from "@pages/Admin/AdminRoute";
 
-const Home = lazy(() => import("./../pages/Home"));
-const Login = lazy(() => import("./../pages/Auth/Login"));
-const Register = lazy(() => import("./../pages/Auth/Register"));
-const ProductList = lazy(() => import("./../pages/Admin/ProductList"));
-const CategoryList = lazy(() => import("./../pages/Admin/CategoryList"));
-const UserList = lazy(() => import("./../pages/Admin/UserList"));
-const ProductDetails = lazy(() => import("./../pages/Products/ProductDetails"));
-const Profile = lazy(() => import("./../pages/User/Profile"));
-const Cart = lazy(() => import("./../pages/Cart"));
-const Favorites = lazy(() => import("./../pages/Products/Favorites"));
-const Shop = lazy(() => import("./../pages/Shop"));
+const Home = lazy(() => import("@pages/Home"));
+const Login = lazy(() => import("@pages/Auth/Login"));
+const Register = lazy(() => import("@pages/Auth/Register"));
+const ProductList = lazy(() => import("@pages/Admin/ProductList"));
+const CategoryList = lazy(() => import("@pages/Admin/CategoryList"));
+const UserList = lazy(() => import("@pages/Admin/UserList"));
+const ProductDetails = lazy(() => import("@pages/Products/ProductDetails"));
+const Profile = lazy(() => import("@pages/User/Profile"));
+const Cart = lazy(() => import("@pages/Cart"));
+const Favorites = lazy(() => import("@pages/Products/Favorites"));
+const Shop = lazy(() => import("@pages/Shop"));
 
 const AppRouter = () => {
 	return (
