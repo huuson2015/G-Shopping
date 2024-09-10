@@ -169,6 +169,7 @@ const AddProductModal = ({ reload, open, onClose }) => {
 										className="w-full py-2 px-5  input-primary capitalize"
 										onChange={handleChange}
 									>
+										<option value="">Choose Category</option>
 										{categories?.map((c) => (
 											<option key={c._id} className="capitalize" value={c._id}>
 												{c.name}

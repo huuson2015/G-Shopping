@@ -12,12 +12,48 @@ import {
 	FaStar,
 	FaStore,
 } from "react-icons/fa";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { PropTypes } from "prop-types";
+
+const PrevArrow = (props) => {
+	const { onClick } = props;
+
+	return (
+		<div
+			className="absolute hover:cursor-pointer hover:bg-button-hover1 z-10 left-3 top-1/3 text-white bg-button-red rounded-full p-1"
+			onClick={onClick}
+		>
+			<HiChevronLeft size={24} />
+		</div>
+	);
+};
+PrevArrow.propTypes = {
+	onClick: PropTypes.func,
+};
+const NextArrow = (props) => {
+	const { onClick } = props;
+
+	return (
+		<div
+			className="absolute hover:cursor-pointer hover:bg-button-hover1 z-10 right-3 top-1/3 text-white bg-button-red rounded-full p-1"
+			onClick={onClick}
+		>
+			<HiChevronRight size={24} />
+		</div>
+	);
+};
+
+NextArrow.propTypes = {
+	onClick: PropTypes.func,
+};
 
 const ProductCarousel = () => {
 	const { data: products, isLoading, error } = useGetTopProductsQuery();
 
 	const settings = {
 		dots: false,
+		draggable: true,
+		fade: true,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
@@ -25,6 +61,8 @@ const ProductCarousel = () => {
 		arrows: true,
 		autoplay: true,
 		autoplaySpeed: 3000,
+		prevArrow: <PrevArrow />,
+		nextArrow: <NextArrow />,
 	};
 
 	return (
