@@ -7,15 +7,17 @@ const SmallProductCard = ({ product }) => {
 	return (
 		<div className="">
 			<div className="relative">
-				<LazyLoadImage
-					src={product.image}
-					alt={product.name}
-					effect="blur"
-					wrapperProps={{
-						style: { transitionDelay: "1s" },
-					}}
-					className="w-full h-[15rem] object-cover rounded"
-				/>
+				<div className="overflow-hidden">
+					<LazyLoadImage
+						src={product.image}
+						alt={product.name}
+						effect="blur"
+						wrapperProps={{
+							style: { transitionDelay: "1s" },
+						}}
+						className="w-full h-[15rem] object-cover rounded"
+					/>
+				</div>
 				<HeartButton product={product} />
 			</div>
 

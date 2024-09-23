@@ -41,7 +41,7 @@ const Cart = () => {
 										key={item._id}
 										className="flex gap-4 border rounded-lg p-3 items-enter"
 									>
-										<div className="size-[6rem]">
+										<div className="size-[6rem] overflow-hidden">
 											<LazyLoadImage
 												src={item.image}
 												alt={item.name}

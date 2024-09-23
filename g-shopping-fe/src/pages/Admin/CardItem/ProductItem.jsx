@@ -21,7 +21,7 @@ const ProductItem = ({
 			>
 				<RxCross2 />
 			</button>
-			<div className="rounded-md w-1/4 p-4">
+			<div className="overflow-hidden rounded-md w-1/4 p-4">
 				<LazyLoadImage
 					src={product?.image}
 					alt={product?.name}

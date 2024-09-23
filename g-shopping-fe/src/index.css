@@ -44,3 +44,12 @@
 svg {
 	fill: currentColor;
 }
+
+.custom-blur-image {
+	transition: filter 0.3s ease-out;
+	filter: blur(20px);
+}
+
+.custom-blur-image.loaded {
+	filter: blur(0);
+}

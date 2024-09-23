@@ -88,15 +88,17 @@ const ProductCarousel = () => {
 							countInStock,
 						}) => (
 							<div className="border-none outline-none" key={_id}>
-								<LazyLoadImage
-									src={image}
-									alt={name}
-									effect="blur"
-									wrapperProps={{
-										style: { transitionDelay: "1s" },
-									}}
-									className="w-full rounded-lg object-cover h-[20rem] 3xl:h-[30rem]"
-								/>
+								<div className="overflow-hidden">
+									<LazyLoadImage
+										src={image}
+										alt={name}
+										effect="blur"
+										wrapperProps={{
+											style: { transitionDelay: "1s" },
+										}}
+										className="w-full rounded-lg object-cover h-[20rem] 3xl:h-[30rem]"
+									/>
+								</div>
 
 								<div className="mt-2 flex flex-col gap-2 md:mt-2">
 									<div className="flex justify-between">
