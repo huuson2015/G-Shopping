@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useProfileMutation } from "@redux/api/userApiSlice";
 import { setCredentials } from "@redux/features/auth/authSlice";
 import { toast } from "react-toastify";
-import Loader from "./@components/Loader";
+import Loader from "@components/Loader";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 
