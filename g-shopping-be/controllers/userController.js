@@ -55,6 +55,8 @@ const loginUser = asyncHandler(async (req, res) => {
 			});
 			return;
 		}
+	} else {
+		res.status(404).json({ error: "User not found" });
 	}
 });
 
