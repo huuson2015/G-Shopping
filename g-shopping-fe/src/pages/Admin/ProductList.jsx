@@ -69,7 +69,11 @@ const ProductList = () => {
 				/>
 			</div>
 			{isLoading ? (
-				<Loader />
+				<div className="w-full min-h-[60vh] flex justify-center items-center">
+					<div className="size-20">
+						<Loader />
+					</div>
+				</div>
 			) : error ? (
 				<Message variant="danger">
 					{error?.data?.message || error.error}

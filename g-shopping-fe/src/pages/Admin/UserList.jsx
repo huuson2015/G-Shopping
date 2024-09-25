@@ -39,7 +39,11 @@ const UserList = () => {
 		<div className="px-6 sm:px-8 lg:px-[8.438rem] mt-5">
 			<h1 className="text-2xl font-semibold mb-4 text-primary-dark">Users</h1>
 			{isLoading ? (
-				<Loader />
+				<div className="w-full min-h-[60vh] flex justify-center items-center">
+					<div className="size-20">
+						<Loader />
+					</div>
+				</div>
 			) : error ? (
 				<Message variant="danger">
 					{error?.data?.message || error.error}
