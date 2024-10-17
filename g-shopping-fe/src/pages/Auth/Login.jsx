@@ -40,7 +40,8 @@ const Login = () => {
 			dispatch(setCredentials({ ...res }));
 			navigate(redirect);
 		} catch (err) {
-			toast.error(err?.data?.message || err.error);
+			console.log(err);
+			toast.error(err?.data?.error || err.error);
 		}
 	};
 
