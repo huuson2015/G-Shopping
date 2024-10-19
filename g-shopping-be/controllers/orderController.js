@@ -135,7 +135,6 @@ const findOrderById = async (req, res) => {
 const markOrderAsPaid = async (req, res) => {
 	try {
 		const order = await Order.findById(req.params.id);
-
 		if (order) {
 			order.isPaid = true;
 			order.paidAt = Date.now();

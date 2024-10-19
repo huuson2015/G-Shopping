@@ -187,11 +187,13 @@ const getNewProducts = asyncHandler(async (req, res) => {
 
 const filterProducts = asyncHandler(async (req, res) => {
 	try {
-		const { checked, radio } = req.body;
+		const { filterCategory, filterPrice } = req.body;
 
 		let args = {};
-		if (checked.length > 0) args.category = checked;
-		if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+		if (filterCategory.length > 0) args.category = filterCategory;
+
+		if (filterPrice.length)
+			args.price = { $gte: filterPrice[0], $lte: filterPrice[1] };
 
 		const products = await Product.find(args);
 		res.json(products);
