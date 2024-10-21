@@ -21,20 +21,14 @@ const Header = () => {
 	}
 
 	return (
-		<>
-			<div className="flex flex-col-reverse gap-[2rem] xl:flex-row justify-between">
-				<div className="md:w-1/2">
-					<div className="grid gap-x-[2rem] lg:grid-cols-2">
-						{data.map((product) => (
-							<div key={product._id}>
-								<SmallProductCard product={product} />
-							</div>
-						))}
-					</div>
-				</div>
-				<ProductCarousel />
+		<div className="flex flex-col-reverse gap-4 lg:flex-row mb-4">
+			<div className="lg:w-1/2 grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-2">
+				{data.map((product) => (
+					<SmallProductCard key={product._id} product={product} />
+				))}
 			</div>
-		</>
+			<ProductCarousel />
+		</div>
 	);
 };
 

@@ -23,6 +23,7 @@ export default {
 					base: "rgb(var(--text) / <alpha-value>)",
 					dark: "rgb(var(--text-dark) / <alpha-value>)",
 					gray: "rgb(var(--text-gray) / <alpha-value>)",
+					yellow: "rgb(var(--text-yellow) / <alpha-value>)",
 				},
 			},
 			screens: {

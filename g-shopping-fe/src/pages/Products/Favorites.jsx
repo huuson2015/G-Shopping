@@ -7,9 +7,12 @@ const Favorites = () => {
 
 	return (
 		<div className="px-6 sm:px-8 lg:px-[8.438rem]">
-			<h1 className="text-lg font-bold ml-[3rem] mt-[3rem]">
-				Favorites product
-			</h1>
+			<div className="flex gap-2 items-center my-4">
+				<div className="min-h-[2.8rem] w-[1.2rem] bg-button-red rounded-md"></div>
+				<h2 className="text-2xl font-medium text-button-red">
+					Favorites product
+				</h2>
+			</div>
 
 			<div className="flex gap-4 flex-wrap">
 				{favorites.map((product) => (

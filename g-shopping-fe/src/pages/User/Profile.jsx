@@ -61,7 +61,12 @@ const Profile = () => {
 				onSubmit={submitHandler}
 				className="container flex flex-col gap-2 mx-5 sm:w-[40vw] border rounded-lg p-5"
 			>
-				<h1 className="text-2xl font-semibold mb-4 ">Update Info</h1>
+				<div className="flex gap-2 items-center">
+					<div className="min-h-[2.8rem] w-[1.2rem] bg-button-red rounded-md"></div>
+					<h2 className="text-2xl font-medium text-button-red">
+						Update Informations
+					</h2>
+				</div>
 				<div className="w-full">
 					<label htmlFor="username" className="block text-sm font-medium ">
 						Username
@@ -69,7 +74,7 @@ const Profile = () => {
 					<input
 						type="username"
 						id="username"
-						className="w-full mt-1 p-2 border rounded"
+						className="mt-1 w-full py-2 px-5 input-primary"
 						placeholder="Enter username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -82,7 +87,7 @@ const Profile = () => {
 					<input
 						type="email"
 						id="email"
-						className="w-full mt-1 p-2 border rounded"
+						className="mt-1 w-full py-2 px-5 input-primary"
 						placeholder="Enter email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -96,7 +101,7 @@ const Profile = () => {
 						<input
 							type={`${isShowPassword ? "text" : "password"}`}
 							id="password"
-							className="w-full mt-1 p-2 border rounded"
+							className="mt-1 w-full py-2 px-5 input-primary"
 							placeholder="Enter password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
@@ -129,7 +134,7 @@ const Profile = () => {
 						<input
 							type={`${isShowConfirmPassword ? "text" : "password"}`}
 							id="confirmPassword"
-							className="w-full mt-1 p-2 border rounded"
+							className="mt-1 w-full py-2 px-5 input-primary"
 							placeholder="Enter confirm password"
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
@@ -154,7 +159,7 @@ const Profile = () => {
 				<button
 					disabled={loadingUpdateProfile}
 					type="submit"
-					className="flex justify-center mt-4 text-white  px-4 py-2 rounded cursor-pointer my-[1rem]"
+					className="flex justify-center mt-4 text-white bg-button-red  px-4 py-2 rounded cursor-pointer my-[1rem]"
 				>
 					{loadingUpdateProfile ? (
 						<div className="h-6 w-6">

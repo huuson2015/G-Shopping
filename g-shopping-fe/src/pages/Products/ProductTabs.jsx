@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Ratings from "./Ratings";
+import Ratings from "@components/Ratings";
 import { useGetTopProductsQuery } from "@redux/api/productApiSlice";
 import Loader from "@components/Loader";
 import SmallProductCard from "@components/SmallProductCard";
@@ -144,11 +144,11 @@ const ProductTabs = ({
 							{!data ? (
 								<Loader />
 							) : (
-								data.map((product) => (
-									<div className="w-1/5" key={product._id}>
-										<SmallProductCard product={product} />
-									</div>
-								))
+								<div className="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4">
+									{data.map((product) => (
+										<SmallProductCard key={product._id} product={product} />
+									))}
+								</div>
 							)}
 						</section>
 					</TabPanel>

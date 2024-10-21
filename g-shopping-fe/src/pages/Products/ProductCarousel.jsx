@@ -53,7 +53,6 @@ const ProductCarousel = () => {
 	const settings = {
 		dots: false,
 		draggable: true,
-		fade: true,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
@@ -63,16 +62,17 @@ const ProductCarousel = () => {
 		autoplaySpeed: 3000,
 		prevArrow: <PrevArrow />,
 		nextArrow: <NextArrow />,
+		cssTransitions: true,
 	};
 
 	return (
-		<div className="mb-4 lg:block xl:block md:block">
+		<div className="lg:w-1/2 border rounded-lg bg-gray-50">
 			{isLoading ? null : error ? (
 				<Message variant="danger">
 					{error?.data?.message || error.error}
 				</Message>
 			) : (
-				<Slider {...settings} className="xl:w-[40rem] 3xl:w-[50rem] sm:block">
+				<Slider {...settings} className="sm:block h-full">
 					{products.map(
 						({
 							image,
@@ -87,7 +87,10 @@ const ProductCarousel = () => {
 							quantity,
 							countInStock,
 						}) => (
-							<div className="border-none outline-none" key={_id}>
+							<div
+								className="border-none outline-none flex flex-col h-full justify-between"
+								key={_id}
+							>
 								<div className="overflow-hidden">
 									<LazyLoadImage
 										src={image}
@@ -96,16 +99,23 @@ const ProductCarousel = () => {
 										wrapperProps={{
 											style: { transitionDelay: "1s" },
 										}}
-										className="w-full rounded-lg object-cover h-[20rem] 3xl:h-[30rem]"
+										className="w-full rounded-t-lg object-cover h-[25rem] 3xl:h-[30rem]"
 									/>
 								</div>
 
-								<div className="mt-2 flex flex-col gap-2 md:mt-2">
-									<div className="flex justify-between">
-										<h2 className="font-medium text-[1.5rem]">{name}</h2>
-										<p className="font-medium"> $ {price}</p>
+								<div className="mt-2 h-[calc(100%-27rem)] 3xl:h-[calc(100%-32rem)] flex flex-col justify-between gap-2 md:mt-2 p-4">
+									<div>
+										<div className="flex justify-between">
+											<h2 className="font-medium text-[1.5rem]">{name}</h2>
+											<p className="font-medium py-1 px-3 bg-button-red rounded-full text-white">
+												${price}
+											</p>
+										</div>
+										<p className="">
+											<b>Description:</b> {description.substring(0, 170)} ...
+										</p>
 									</div>
-									<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-1">
+									<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-y-1">
 										<h1 className="flex items-center">
 											<FaStore className="mr-2 text-button-red" /> <b>Brand:</b>
 											{brand}
@@ -114,7 +124,7 @@ const ProductCarousel = () => {
 											<FaClock className="mr-2 text-button-red" /> <b>Added:</b>
 											{moment(createdAt).fromNow()}
 										</h1>
-										<h1 className="flex items-center">
+										<h1 className="flex items-center ">
 											<FaStar className="mr-2 text-button-red" />{" "}
 											<b>Reviews:</b>
 											{numReviews}
@@ -133,9 +143,6 @@ const ProductCarousel = () => {
 											<b>In Stock:</b> {countInStock}
 										</h1>
 									</div>
-									<p className="">
-										<b>Description:</b> {description.substring(0, 170)} ...
-									</p>
 								</div>
 							</div>
 						)

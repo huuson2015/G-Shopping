@@ -32,8 +32,12 @@ const Cart = () => {
 			) : (
 				<>
 					<div className="flex flex-col w-full">
-						<h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
-
+						<div className="flex gap-2 items-center my-4">
+							<div className="min-h-[2.8rem] w-[1.2rem] bg-button-red rounded-md"></div>
+							<h2 className="text-2xl font-medium text-button-red">
+								Shopping Cart
+							</h2>
+						</div>
 						<div className="flex flex-col md:flex-row gap-4">
 							<div className="flex-1 flex flex-col gap-2">
 								{cartItems.map((item) => (
