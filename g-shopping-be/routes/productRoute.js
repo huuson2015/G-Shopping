@@ -13,6 +13,7 @@ import {
 	getTopProducts,
 	getNewProducts,
 	filterProducts,
+	getAllBrand,
 } from "../controllers/productController.js";
 
 const router = express.Router();
@@ -28,12 +29,13 @@ router.route("/:id/reviews").post(authenticate, checkId, addProductReview);
 router.route("/top").get(getTopProducts);
 router.route("/new").get(getNewProducts);
 
+router.route("/brands").get(getAllBrand);
+router.route("/filtered-products").get(filterProducts);
+
 router
 	.route("/:id")
 	.get(getProductById)
 	.put(authenticate, authorizeAdmin, ExpressFormidable(), updateProductDetails)
 	.delete(authenticate, authorizeAdmin, removeProduct);
-
-router.route("/filtered-products").post(filterProducts);
 
 export default router;

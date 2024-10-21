@@ -187,13 +187,27 @@ const getNewProducts = asyncHandler(async (req, res) => {
 
 const filterProducts = asyncHandler(async (req, res) => {
 	try {
-		const { filterCategory, filterPrice } = req.body;
+		const { productName, productCategoryId, productPrice, productBrand } =
+			req.query;
 
 		let args = {};
-		if (filterCategory.length > 0) args.category = filterCategory;
+		if (productName) args.name = { $regex: productName, $options: "i" };
 
-		if (filterPrice.length)
-			args.price = { $gte: filterPrice[0], $lte: filterPrice[1] };
+		if (productCategoryId) {
+			const categories = Array.isArray(productCategoryId)
+				? productCategoryId
+				: [productCategoryId];
+
+			args.category = { $in: categories };
+		}
+
+		if (productBrand) args.brand = { $regex: productBrand, $options: "i" };
+		if (productPrice) {
+			args.price = {
+				$gte: productPrice[0],
+				$lte: productPrice[1],
+			};
+		}
 
 		const products = await Product.find(args);
 		res.json(products);
@@ -203,12 +217,23 @@ const filterProducts = asyncHandler(async (req, res) => {
 	}
 });
 
+const getAllBrand = async (req, res) => {
+	try {
+		const brands = await Product.distinct("brand");
+		res.json(brands);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Server error" });
+	}
+};
+
 export {
 	addProduct,
 	updateProductDetails,
 	removeProduct,
 	getProducts,
 	getAllProducts,
+	getAllBrand,
 	getProductById,
 	addProductReview,
 	getTopProducts,

@@ -82,26 +82,33 @@ export const productApiSlice = apiSlice.injectEndpoints({
 		}),
 
 		getFilteredProducts: builder.query({
-			query: ({ filterCategory, filterPrice }) => ({
+			query: (searchParams) => ({
 				url: `${PRODUCT_URL}/filtered-products`,
-				method: "POST",
-				body: { filterCategory, filterPrice },
+				method: "GET",
+				params: searchParams,
+			}),
+		}),
+		getProductBrands: builder.query({
+			query: () => ({
+				url: `${PRODUCT_URL}/brands`,
+				method: "GET",
 			}),
 		}),
 	}),
 });
 
 export const {
-	useGetProductByIdQuery,
 	useGetProductsQuery,
-	useGetProductDetailsQuery,
+	useGetProductByIdQuery,
 	useAllProductsQuery,
+	useGetProductDetailsQuery,
 	useCreateProductMutation,
-	useUpdateProductMutation,
-	useDeleteProductMutation,
 	useCreateReviewMutation,
+	useUpdateProductMutation,
+	useUploadProductImageMutation,
+	useDeleteProductMutation,
 	useGetTopProductsQuery,
 	useGetNewProductsQuery,
-	useUploadProductImageMutation,
 	useGetFilteredProductsQuery,
+	useGetProductBrandsQuery,
 } = productApiSlice;

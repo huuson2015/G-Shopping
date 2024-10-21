@@ -17,7 +17,10 @@ const ProductDetails = lazy(() => import("@pages/Products/ProductDetails"));
 const Profile = lazy(() => import("@pages/User/Profile"));
 const Cart = lazy(() => import("@pages/Cart"));
 const Favorites = lazy(() => import("@pages/Products/Favorites"));
-const Shop = lazy(() => import("@pages/Shop"));
+const Shop = lazy(() => import("@pages/Shop/Shop"));
+import Shipping from "@pages/Orders/Shipping";
+import OrderSumary from "@pages/Orders/OrderSumary";
+import OrderDetail from "../pages/Orders/OrderDetail";
 
 const AppRouter = () => {
 	return (
@@ -41,6 +44,9 @@ const AppRouter = () => {
 					<Route path="/product/:id" element=<ProductDetails /> />
 					<Route path="" element={<PrivateRoute />}>
 						<Route path="/profile" element=<Profile /> />
+						<Route path="/shipping" element=<Shipping /> />
+						<Route path="/order-sumary" element=<OrderSumary /> />
+						<Route path="/order/:id" element={<OrderDetail />} />
 					</Route>
 					<Route path="/admin" element={<AdminRoute />}>
 						<Route path="users" element={<UserList />} />
