@@ -21,14 +21,19 @@ const ProductCard = ({ product }) => {
 				<HeartButton product={product} />
 			</div>
 
-			<Link className="flex flex-col gap-2 p-4" to={`/product/${product._id}`}>
-				<p className="text-sm sm:text-base font-medium">{product.name}</p>
-				<span className="w-fit bg-button-red text-white text-sm font-medium px-2.5 py-0.5 rounded-full ">
-					$ {product.price}
-				</span>
-				<Ratings value={product.rating} text={`(${product.numReviews})`} />
+			<div className="flex flex-col gap-2 p-4">
+				<Link
+					className="text-sm sm:text-base font-medium"
+					to={`/product/${product._id}`}
+				>
+					<p className="text-sm sm:text-base font-medium">{product.name}</p>
+					<span className="w-fit bg-button-red text-white text-sm font-medium px-2.5 py-0.5 rounded-full ">
+						$ {product.price}
+					</span>
+					<Ratings value={product.rating} text={`(${product.numReviews})`} />
+				</Link>
 				<AddToCartButton product={product} />
-			</Link>
+			</div>
 		</div>
 	);
 };

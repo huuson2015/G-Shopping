@@ -2,8 +2,9 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { addToCart } from "@redux/features/cart/cartSlice";
 import { HiMiniShoppingCart } from "react-icons/hi2";
+import { PropTypes } from "prop-types";
 
-const AddToCartButton = (product) => {
+const AddToCartButton = ({ product }) => {
 	const dispatch = useDispatch();
 	const addToCartHandler = () => {
 		dispatch(addToCart({ ...product, qty: 1 }));
@@ -18,6 +19,10 @@ const AddToCartButton = (product) => {
 			<span className="text-primary-base">Add to cart</span>
 		</button>
 	);
+};
+
+AddToCartButton.propTypes = {
+	product: PropTypes.object.isRequired,
 };
 
 export default AddToCartButton;

@@ -63,6 +63,15 @@ const ProductDetails = () => {
 	};
 
 	const addToCartHandler = () => {
+		//if cart is already existing
+		// // const existItem = cart.cartItems.find((x) => x._id === product._id);
+		// const quantity = existItem ? existItem.quantity + qty : qty;
+
+		// if (quantity > product.countInStock) {
+		// 	toast.error("Sorry. Product is out of stock");
+		// 	return;
+		// }
+
 		dispatch(addToCart({ ...product, qty }));
 		toast.success("Product added to cart");
 	};

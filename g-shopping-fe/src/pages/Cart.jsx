@@ -24,7 +24,7 @@ const Cart = () => {
 	};
 
 	return (
-		<div className="px-6 sm:px-8 lg:px-[8.438rem] pt-5">
+		<div className="px-6 sm:px-8 lg:px-[8.438rem] pt-5 mb-10">
 			{cartItems.length === 0 ? (
 				<div>
 					Your cart is empty <Link to="/shop">Go To Shop</Link>
