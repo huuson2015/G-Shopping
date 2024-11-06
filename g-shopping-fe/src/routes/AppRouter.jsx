@@ -21,6 +21,10 @@ const Shop = lazy(() => import("@pages/Shop/Shop"));
 import Shipping from "@pages/Orders/Shipping";
 import OrderSumary from "@pages/Orders/OrderSumary";
 import OrderDetail from "../pages/Orders/OrderDetail";
+import { Navigate } from "react-router";
+import UserOrder from "../pages/User/Contents/UserOrder";
+import Me from "../pages/User/Contents/Me";
+import Location from "../pages/User/Contents/Location";
 
 const AppRouter = () => {
 	return (
@@ -43,7 +47,12 @@ const AppRouter = () => {
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/product/:id" element=<ProductDetails /> />
 					<Route path="" element={<PrivateRoute />}>
-						<Route path="/profile" element=<Profile /> />
+						<Route path="profile" element=<Profile />>
+							<Route index element={<Navigate to="me" replace />} />
+							<Route path="me" element=<Me /> />
+							<Route path="orders" element=<UserOrder /> />
+							<Route path="location" element=<Location /> />
+						</Route>
 						<Route path="/shipping" element=<Shipping /> />
 						<Route path="/order-sumary" element=<OrderSumary /> />
 						<Route path="/order/:id" element={<OrderDetail />} />
