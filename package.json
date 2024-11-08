@@ -4,6 +4,10 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
+		"build": "npm run build:frontend && npm run build:backend",
+		"build:frontend": "npm install --prefix g-shopping-fe && npm run build --prefix g-shopping-fe",
+		"build:backend": "echo 'No backend build needed'",
+		"start": "node g-shopping-be/index.js",
 		"backend": "nodemon g-shopping-be/index.js",
 		"frontend": "npm run dev --prefix g-shopping-fe",
 		"dev": "concurrently \"npm run frontend\" \"npm run backend\""
