@@ -6,7 +6,8 @@
 	"scripts": {
 		"backend": "nodemon g-shopping-be/index.js",
 		"frontend": "npm run dev --prefix g-shopping-fe",
-		"dev": "concurrently \"npm run frontend\" \"npm run backend\""
+		"dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+		"build": "npm run build --prefix g-shopping-fe"
 	},
 	"keywords": [],
 	"author": "",
