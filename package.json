@@ -7,7 +7,9 @@
 		"backend": "nodemon g-shopping-be/index.js",
 		"frontend": "npm run dev --prefix g-shopping-fe",
 		"dev": "concurrently \"npm run frontend\" \"npm run backend\"",
-		"build": "npm run build --prefix g-shopping-fe"
+		"build:frontend": "npm run build --prefix g-shopping-fe",
+		"build:backend": "echo 'No build step required for backend'",
+		"build": "npm run build:frontend && npm run build:backend"
 	},
 	"keywords": [],
 	"author": "",
