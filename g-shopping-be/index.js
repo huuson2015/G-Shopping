@@ -10,13 +10,6 @@ import categoryRoutes from "./routes/categoryRoute.js";
 import productRoutes from "./routes/productRoute.js";
 import uploadRoutes from "./routes/uploadRoute.js";
 import orderRoutes from "./routes/orderRoute.js";
-import httpProxy from "http-proxy";
-
-const proxy = httpProxy.createProxyServer({
-	target: "https://g-shopping-be.onrender.com",
-	changeOrigin: true,
-	pathRewrite: { "^/uploads": "/uploads" },
-});
 
 dotenv.config();
 const port = process.env.PORT || 5000;
@@ -31,7 +24,7 @@ app.use(cookieParser());
 
 app.use(
 	cors({
-		origin: "https://g-shopping.onrender.com", // Note: No trailing slash
+		origin: "https://g-shopping.onrender.com",
 	})
 );
 
@@ -44,9 +37,11 @@ app.get("/api/config/paypal", (req, res) => {
 	res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
 });
 
-app.use("/uploads", (req, res) => {
-	proxy.web(req, res);
-});
+const __dirname = path.resolve();
+app.use(
+	"/uploads",
+	express.static("https://g-shopping-be.onrender.com/uploads")
+);
 
 app.listen(port, () => {
 	console.log(`Server running on port: ${port}`);
