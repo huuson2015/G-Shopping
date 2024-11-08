@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Messsage from "@components/Message";
 import Loader from "@components/Loader";
-import { HiCheckCircle } from "react-icons/hi2";
+import { HiCheckCircle, HiMiniXCircle } from "react-icons/hi2";
 import {
 	useDeliverOrderMutation,
 	useGetOrderDetailsQuery,
@@ -213,7 +213,7 @@ const OrderDetail = () => {
 			</div>
 
 			<div className="w-full flex flex-col gap-4 z-20 col-span-1 lg:col-start-4 lg:col-end-5 lg:row-start-1 lg:row-end-4">
-				{!order.isPaid && (
+				{!order.isPaid && !userInfo.isAdmin && (
 					<div>
 						{loadingPay && (
 							<div className="flex justify-center items-center ">
@@ -242,6 +242,12 @@ const OrderDetail = () => {
 					<div className="flex gap-2 items-center text-button-red bg-primary-base border shadow p-4 rounded-lg">
 						<HiCheckCircle className="text-3xl" />
 						Paid on {formatDateTime(order.paidAt)}
+					</div>
+				)}
+				{!order.isPaid && userInfo.isAdmin && (
+					<div className="flex gap-2 items-center text-button-red bg-primary-base border shadow p-4 rounded-lg">
+						<HiMiniXCircle className="text-3xl" />
+						Not paid
 					</div>
 				)}
 

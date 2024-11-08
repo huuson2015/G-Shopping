@@ -40,6 +40,7 @@ const ProductDetails = () => {
 	} = useGetProductDetailsQuery(productId);
 
 	const { userInfo } = useSelector((state) => state.auth);
+	const cart = useSelector((state) => state.cart);
 
 	const [createReview, { isLoading: loadingProductReview }] =
 		useCreateReviewMutation();
@@ -63,14 +64,13 @@ const ProductDetails = () => {
 	};
 
 	const addToCartHandler = () => {
-		//if cart is already existing
-		// // const existItem = cart.cartItems.find((x) => x._id === product._id);
-		// const quantity = existItem ? existItem.quantity + qty : qty;
+		const existItem = cart.cartItems.find((x) => x._id === product._id);
+		const quantity = existItem ? existItem.quantity + qty : qty;
 
-		// if (quantity > product.countInStock) {
-		// 	toast.error("Sorry. Product is out of stock");
-		// 	return;
-		// }
+		if (quantity > product.countInStock) {
+			toast.error("Product already in cart");
+			return;
+		}
 
 		dispatch(addToCart({ ...product, qty }));
 		toast.success("Product added to cart");

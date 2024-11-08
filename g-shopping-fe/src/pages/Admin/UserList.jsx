@@ -37,7 +37,10 @@ const UserList = () => {
 
 	return (
 		<div className="px-6 sm:px-8 lg:px-[8.438rem] mt-5">
-			<h1 className="text-2xl font-semibold mb-4 text-primary-dark">Users</h1>
+			<div className="flex gap-2 items-center my-4">
+				<div className="min-h-[2.8rem] w-[1.2rem] bg-button-red rounded-md"></div>
+				<h2 className="text-2xl font-medium text-button-red">Manage Users</h2>
+			</div>
 			{isLoading ? (
 				<div className="w-full min-h-[60vh] flex justify-center items-center">
 					<div className="size-20">
@@ -49,23 +52,23 @@ const UserList = () => {
 					{error?.data?.message || error.error}
 				</Message>
 			) : (
-				<div className="flex flex-col md:flex-row border border-primary-dark rounded-md">
+				<div className="flex flex-col md:flex-row rounded-md">
 					<table className="w-full">
-						<thead>
+						<thead className="bg-button-red">
 							<tr className="text-left">
-								<th className="px-4 py-2 border-r border-b border-primary-dark">
+								<th className="rounded-tl-lg px-3 py-2 text-left text-white font-medium">
 									ID
 								</th>
-								<th className="px-4 py-2 border-r border-b border-primary-dark">
+								<th className="px-1 py-2 text-left text-white font-medium">
 									Name
 								</th>
-								<th className="px-4 py-2 border-r border-b border-primary-dark">
+								<th className="px-1 py-2 text-left text-white font-medium">
 									Email
 								</th>
-								<th className="px-4 py-2 border-r border-b border-primary-dark">
+								<th className="px-1 py-2 text-left text-white font-medium">
 									Admin
 								</th>
-								<th className="px-4 py-2 border-b border-primary-dark">
+								<th className="rounded-tr-lg px-1 py-2 text-left text-white font-medium">
 									Action
 								</th>
 							</tr>
@@ -73,25 +76,23 @@ const UserList = () => {
 						<tbody>
 							{users.map((user) => (
 								<tr key={user._id}>
-									<td className="px-4 py-2  border-r border-primary-dark">
-										{user._id}
-									</td>
-									<td className="px-4 py-2 border-r border-primary-dark">
+									<td className="px-4 py-2 border-l">{user._id}</td>
+									<td className="px-4 py-2">
 										<div className="flex items-center">{user.username} </div>
 									</td>
-									<td className="px-4 py-2 border-r border-primary-dark">
+									<td className="px-4 py-2">
 										<div className="flex items-center">
 											<a href={`mailto:${user.email}`}>{user.email}</a>{" "}
 										</div>
 									</td>
-									<td className="px-4 py-2 border-r border-primary-dark">
+									<td className="px-4 py-2">
 										{user.isAdmin ? (
 											<FaCheck style={{ color: "green" }} />
 										) : (
 											<FaTimes style={{ color: "red" }} />
 										)}
 									</td>
-									<td className="px-4 py-2">
+									<td className="px-4 py-2 border-r">
 										{!user.isAdmin && (
 											<div className="flex">
 												<button
@@ -111,6 +112,13 @@ const UserList = () => {
 									</td>
 								</tr>
 							))}
+							<tr className="bg-button-red py-4 ">
+								<td className="py-5 rounded-bl-lg"></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td className="py-5 rounded-br-lg"></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import { Navigate } from "react-router";
 
 import AppContainer from "../container/AppContainer";
 
@@ -18,13 +19,14 @@ const Profile = lazy(() => import("@pages/User/Profile"));
 const Cart = lazy(() => import("@pages/Cart"));
 const Favorites = lazy(() => import("@pages/Products/Favorites"));
 const Shop = lazy(() => import("@pages/Shop/Shop"));
-import Shipping from "@pages/Orders/Shipping";
-import OrderSumary from "@pages/Orders/OrderSumary";
-import OrderDetail from "../pages/Orders/OrderDetail";
-import { Navigate } from "react-router";
-import UserOrder from "../pages/User/Contents/UserOrder";
-import Me from "../pages/User/Contents/Me";
-import Location from "../pages/User/Contents/Location";
+const Shipping = lazy(() => import("@pages/Orders/Shipping"));
+const OrderSumary = lazy(() => import("@pages/Orders/OrderSumary"));
+const OrderDetail = lazy(() => import("@pages/Orders/OrderDetail"));
+const UserOrder = lazy(() => import("@pages/User/Contents/UserOrder"));
+const Me = lazy(() => import("@pages/User/Contents/Me"));
+const Location = lazy(() => import("@pages/User/Contents/Location"));
+const OrderList = lazy(() => import("@pages/Admin/OrderList"));
+const AdminDashboard = lazy(() => import("@pages/Admin/AdminDashboard"));
 
 const AppRouter = () => {
 	return (
@@ -61,6 +63,8 @@ const AppRouter = () => {
 						<Route path="users" element={<UserList />} />
 						<Route path="categories" element={<CategoryList />} />
 						<Route path="products" element={<ProductList />} />
+						<Route path="orders" element={<OrderList />} />
+						<Route path="dashboard" element={<AdminDashboard />} />
 					</Route>
 				</Route>
 			</Routes>

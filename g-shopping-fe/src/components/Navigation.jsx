@@ -142,7 +142,10 @@ const RenderAuthenticateOfUser = () => {
 									</Link>
 								</MenuItem>
 								<MenuItem>
-									<Link className="flex items-center gap-2 p-2" to="/login">
+									<Link
+										to="/admin/orders"
+										className="flex items-center gap-2 p-2"
+									>
 										<AiOutlineShoppingCart size={20} />
 										Orders
 									</Link>

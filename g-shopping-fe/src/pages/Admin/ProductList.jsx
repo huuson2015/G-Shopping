@@ -55,9 +55,14 @@ const ProductList = () => {
 	return (
 		<div className="px-6 sm:px-8 lg:px-[8.438rem] mt-5">
 			<div className="flex mb-5 justify-between">
-				<h1 className="font-medium text-2xl">Manage Products</h1>
+				<div className="flex gap-2 items-center my-4">
+					<div className="min-h-[2.8rem] w-[1.2rem] bg-button-red rounded-md"></div>
+					<h2 className="text-2xl font-medium text-button-red">
+						Manage Products
+					</h2>
+				</div>
 				<button
-					className="px-3 py-3 rounded-md text-white bg-button-red hover:bg-button-hover1 "
+					className="px-3 py-3 size-10 rounded-md text-white bg-button-red hover:bg-button-hover1 "
 					onClick={() => toggleModalAdd()}
 				>
 					<RxPlus />
