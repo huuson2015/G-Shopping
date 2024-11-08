@@ -9,7 +9,11 @@ export default defineConfig({
 	server: {
 		proxy: {
 			"/api/": "https://g-shopping-be.onrender.com",
-			"/uploads/": "https://g-shopping-be.onrender.com",
+			"/uploads/": {
+				target: "https://g-shopping-be.onrender.com/uploads/",
+				changeOrigin: true,
+				logLevel: "debug",
+			},
 		},
 	},
 	resolve: {
