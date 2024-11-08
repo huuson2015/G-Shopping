@@ -8,15 +8,8 @@ export default defineConfig({
 	plugins: [react()],
 	server: {
 		proxy: {
-			"/api/": "https://g-shopping-be.onrender.com",
-			"/uploads/": {
-				target: "https://g-shopping-be.onrender.com/uploads/",
-				changeOrigin: true,
-				logLevel: "debug",
-				onProxyReq: (proxyReq) => {
-					console.log("Proxy request:", proxyReq.url);
-				},
-			},
+			"/api": "https://g-shopping-be.onrender.com",
+			"/uploads": "https://g-shopping-be.onrender.com",
 		},
 	},
 	resolve: {

@@ -28,6 +28,12 @@ app.use(
 	})
 );
 
+app.use(
+	cors({
+		origin: "http://localhost:5173",
+	})
+);
+
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes);
