@@ -20,6 +20,23 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+//cors for host https://g-shopping.onrender.com/\
+app.use(function (req, res, next) {
+	res.setHeader(
+		"Access-Control-Allow-Origin",
+		"https://g-shopping.onrender.com/"
+	);
+	res.setHeader(
+		"Access-Control-Allow-Methods",
+		"GET, POST, OPTIONS, PUT, PATCH, DELETE"
+	);
+	res.setHeader(
+		"Access-Control-Allow-Headers",
+		"X-Requested-With,content-type"
+	);
+	res.setHeader("Access-Control-Allow-Credentials", true);
+	next();
+});
 
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
