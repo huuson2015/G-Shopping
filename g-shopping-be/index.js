@@ -38,10 +38,9 @@ app.get("/api/config/paypal", (req, res) => {
 });
 
 const __dirname = path.resolve();
-app.use(
-	"/uploads",
-	express.static("https://g-shopping-be.onrender.com/uploads")
-);
+app.use("/uploads", express.static(path.join(__dirname + "/uploads")), {
+	virtualPath: "https://g-shopping-be.onrender.com/uploads/",
+});
 
 app.listen(port, () => {
 	console.log(`Server running on port: ${port}`);
