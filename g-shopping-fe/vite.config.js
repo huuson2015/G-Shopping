@@ -13,6 +13,9 @@ export default defineConfig({
 				target: "https://g-shopping-be.onrender.com/uploads/",
 				changeOrigin: true,
 				logLevel: "debug",
+				onProxyReq: (proxyReq) => {
+					console.log("Proxy request:", proxyReq.url);
+				},
 			},
 		},
 	},
