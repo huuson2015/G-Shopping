@@ -3,7 +3,6 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import proxy from "http-proxy-middleware";
 
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -38,16 +37,8 @@ app.get("/api/config/paypal", (req, res) => {
 	res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
 });
 
-app.use(
-	"/uploads",
-	proxy({
-		target: "https://g-shopping.onrender.com",
-		changeOrigin: true,
-		pathRewrite: {
-			"^/uploads": "",
-		},
-	})
-);
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 
 app.listen(port, () => {
 	console.log(`Server running on port: ${port}`);
