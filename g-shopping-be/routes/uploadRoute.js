@@ -30,6 +30,6 @@ const uploadToCloudinary = async (req, res) => {
 	}
 };
 
-router.post("/", upload.single("image"), uploadToCloudinary);
+router.post("/", uploadToCloudinary);
 
 export default router;

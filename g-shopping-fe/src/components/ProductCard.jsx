@@ -8,6 +8,11 @@ import AddToCartButton from "./AddToCartButton";
 const ProductCard = ({ product }) => {
 	return (
 		<div className="w-full h-fit relative border shadow-sm rounded-lg bg-gray-50">
+			{product.countInStock === 0 && (
+				<div className="absolute z-20 top-3 left-3 bg-button-red text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
+					Sold out
+				</div>
+			)}
 			<div className="relative">
 				<div className="overflow-hidden">
 					<LazyLoadImage

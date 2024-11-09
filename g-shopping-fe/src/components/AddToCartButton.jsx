@@ -10,10 +10,13 @@ const AddToCartButton = ({ product }) => {
 		dispatch(addToCart({ ...product, qty: 1 }));
 		toast.success("Product added to cart");
 	};
+	console.log(product);
+
 	return (
 		<button
-			className="p-2 flex justify-center items-center gap-2 bg-button-red hover:bg-button-hover1 rounded-lg cursor-pointer"
+			className="p-2 flex justify-center items-center gap-2 bg-button-red disabled:bg-button-hover1 hover:bg-button-hover1 rounded-lg cursor-pointer"
 			onClick={() => addToCartHandler()}
+			disabled={product.countInStock === 0}
 		>
 			<HiMiniShoppingCart size={20} className="text-primary-base" />
 			<span className="text-primary-base">Add to cart</span>

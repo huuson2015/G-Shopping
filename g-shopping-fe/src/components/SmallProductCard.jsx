@@ -8,6 +8,11 @@ const SmallProductCard = ({ product }) => {
 	return (
 		<div className="border shadow-sm h-full rounded-lg mb-4 bg-gray-50">
 			<div className="relative">
+				{product.countInStock === 0 && (
+					<div className="absolute z-20 top-3 left-3 bg-button-red text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
+						Sold out
+					</div>
+				)}
 				<div className="overflow-hidden">
 					<LazyLoadImage
 						src={product.image}

@@ -100,6 +100,11 @@ const ProductDetails = () => {
 			) : (
 				<div className="grid grid-cols-1 xl:grid-cols-6 gap-4 relative items-between">
 					<div className="relative col-span-1 xl:col-span-3">
+						{product.countInStock === 0 && (
+							<div className="absolute z-20 top-3 left-3 bg-button-red text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
+								Sold out
+							</div>
+						)}
 						<img
 							src={product.image}
 							alt={product.name}
@@ -173,7 +178,7 @@ const ProductDetails = () => {
 							<button
 								onClick={addToCartHandler}
 								disabled={product.countInStock === 0}
-								className="bg-button-red hover:bg-button-hover1 text-white font-medium py-4 px-8 rounded-lg mt-4 md:mt-0"
+								className="bg-button-red hover:bg-button-hover1 disabled:bg-button-hover1 text-white font-medium py-4 px-8 rounded-lg mt-4 md:mt-0"
 							>
 								Add To Cart
 							</button>
