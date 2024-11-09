@@ -92,7 +92,14 @@ const AdminDashboard = () => {
 
 					<p className="mt-5 text-primary-base font-medium">Sales</p>
 					<h1 className="text-xl font-bold text-primary-base ">
-						$ {isLoading ? <Loader /> : sales.totalSales.toFixed(2)}
+						${" "}
+						{isLoading ? (
+							<div className="size-20">
+								<Loader />
+							</div>
+						) : (
+							sales.totalSales.toFixed(2)
+						)}
 					</h1>
 				</div>
 				<div className="rounded-lg bg-button-red p-5 mt-5">
@@ -102,7 +109,14 @@ const AdminDashboard = () => {
 
 					<p className="mt-5 text-primary-base font-medium">Customers</p>
 					<h1 className="text-xl font-bold text-primary-base ">
-						$ {isLoading ? <Loader /> : customers?.length}
+						${" "}
+						{isLoading ? (
+							<div className="size-20">
+								<Loader />
+							</div>
+						) : (
+							customers?.length
+						)}
 					</h1>
 				</div>
 				<div className="rounded-lg bg-button-red p-5 mt-5">
@@ -112,7 +126,14 @@ const AdminDashboard = () => {
 
 					<p className="mt-5 text-primary-base font-medium">All Orders</p>
 					<h1 className="text-xl font-bold text-primary-base ">
-						$ {isLoading ? <Loader /> : orders?.totalOrders}
+						${" "}
+						{isLoading ? (
+							<div className="size-20">
+								<Loader />
+							</div>
+						) : (
+							orders?.totalOrders
+						)}
 					</h1>
 				</div>
 			</div>
