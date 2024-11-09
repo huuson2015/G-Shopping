@@ -1,5 +1,4 @@
 import express from "express";
-import multer from "multer";
 import cloudinary from "cloudinary";
 import dotenv from "dotenv";
 dotenv.config();
@@ -11,8 +10,6 @@ cloudinary.config({
 });
 
 const router = express.Router();
-
-const upload = multer({ dest: "uploads/" });
 
 const uploadToCloudinary = async (req, res) => {
 	try {
