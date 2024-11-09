@@ -6,12 +6,6 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [react()],
-	server: {
-		proxy: {
-			"/api": "https://g-shopping-be.onrender.com",
-			"/uploads": "https://g-shopping-be.onrender.com",
-		},
-	},
 	resolve: {
 		alias: {
 			"@components": path.resolve(__dirname, "src/components"),

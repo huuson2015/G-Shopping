@@ -10,7 +10,7 @@ const SmallProductCard = ({ product }) => {
 			<div className="relative">
 				<div className="overflow-hidden">
 					<LazyLoadImage
-						src={product.image}
+						src={import.meta.env.VITE_IMAGE_URL + product.image}
 						alt={product.name}
 						effect="blur"
 						className="w-full h-[15rem] object-cover rounded-t-lg"

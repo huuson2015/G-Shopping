@@ -93,7 +93,7 @@ const ProductCarousel = () => {
 							>
 								<div className="overflow-hidden">
 									<LazyLoadImage
-										src={image}
+										src={import.meta.env.VITE_IMAGE_URL + image}
 										alt={name}
 										effect="blur"
 										wrapperProps={{

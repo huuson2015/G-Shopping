@@ -23,7 +23,7 @@ const ProductItem = ({
 			</button>
 			<div className="overflow-hidden rounded-md w-2/6 p-4">
 				<LazyLoadImage
-					src={product?.image}
+					src={import.meta.env.VITE_IMAGE_URL + product?.image}
 					alt={product?.name}
 					effect="blur"
 					wrapperProps={{

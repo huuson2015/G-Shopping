@@ -47,7 +47,7 @@ const Cart = () => {
 									>
 										<div className="size-[6rem] overflow-hidden">
 											<LazyLoadImage
-												src={item.image}
+												src={import.meta.env.VITE_IMAGE_URL + item.image}
 												alt={item.name}
 												className="w-full h-full object-cover rounded"
 											/>

@@ -112,7 +112,7 @@ const OrderSummary = () => {
 												<td className="p-2 bg-primary-base flex justify-center">
 													<div className="overflow-hidden">
 														<LazyLoadImage
-															src={item.image}
+															src={import.meta.env.VITE_IMAGE_URL + item.image}
 															alt={item.name}
 															effect="blur"
 															className="size-20 object-cover rounded-lg"
