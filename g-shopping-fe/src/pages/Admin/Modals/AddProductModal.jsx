@@ -20,18 +20,26 @@ const AddProductModal = ({ reload, open, onClose }) => {
 		stock: 0,
 	});
 
-	const [uploadProductImage] = useUploadProductImageMutation();
+	const [img, setImg] = useState("");
+
+	const [uploadProductImage, { isLoading }] = useUploadProductImageMutation();
+
 	const [createProduct] = useCreateProductMutation();
 	const { data: categories } = useFetchCategoriesQuery();
 
-	const uploadFileHandler = async (e) => {
+	const handleChangeImage = (e) => {
+		setImg(e.target.files[0]);
+	};
+
+	const uploadFileHandler = async () => {
 		const formData = new FormData();
-		formData.append("image", e.target.files[0]);
+		formData.append("image", img);
 
 		try {
-			const res = await uploadProductImage(formData).unwrap();
-			toast.success(res.message);
-			setProduct({ ...product, image: res.image });
+			const res = await uploadProductImage(formData);
+			toast.success(res.data.message);
+
+			setProduct({ ...product, image: res.data.image });
 		} catch (error) {
 			toast.error(error?.data?.message || error.error);
 		}
@@ -69,6 +77,7 @@ const AddProductModal = ({ reload, open, onClose }) => {
 					brand: "",
 					stock: 0,
 				});
+				setImg("");
 			}
 		} catch (error) {
 			console.error(error);
@@ -105,18 +114,23 @@ const AddProductModal = ({ reload, open, onClose }) => {
 						</h1>
 						<div>
 							<label className="border bg-gray-200 text-primary-dark px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-5 md:py-10">
-								{product.image ? product.image.name : "Upload Image"}
-
+								{img ? img.name : "Upload Image"}
 								<input
 									type="file"
 									name="image"
 									accept="image/*"
-									onChange={uploadFileHandler}
-									className={`w-full ${
-										!product.image ? "hidden" : "text-primary-dark"
-									}`}
+									onChange={handleChangeImage}
+									className="w-full hidden"
 								/>
 							</label>
+							<button
+								className="mt-2 w-full px-4 py-2 bg-button-red disabled:bg-button-hover1 text-white rounded-lg"
+								type="button"
+								disabled={!img}
+								onClick={uploadFileHandler}
+							>
+								{isLoading ? "Uploading..." : "Upload"}
+							</button>
 						</div>
 						<div className="flex flex-col md:gap-2">
 							<div>
@@ -252,8 +266,9 @@ const AddProductModal = ({ reload, open, onClose }) => {
 
 						<div className="flex gap-4">
 							<button
-								className="w-1/2 bg-button-red hover:bg-button-hover1 px-3 py-2 text-white font-bold rounded-md"
+								className="w-1/2 bg-button-red disabled:bg-button-hover1 hover:bg-button-hover1 px-3 py-2 text-white font-bold rounded-md"
 								type="submit"
+								disabled={!product.image}
 							>
 								Save
 							</button>

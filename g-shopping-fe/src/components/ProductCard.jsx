@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
 			<div className="relative">
 				<div className="overflow-hidden">
 					<LazyLoadImage
-						src={import.meta.env.VITE_IMAGE_URL + product.image}
+						src={product.image}
 						alt={product.name}
 						effect="blur"
 						wrapperProps={{ style: { transitionDelay: "1s", width: "100%" } }}
