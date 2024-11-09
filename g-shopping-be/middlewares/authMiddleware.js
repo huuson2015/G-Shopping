@@ -3,6 +3,7 @@ import User from "../models/userModel.js";
 import asyncHandler from "./asyncHandler.js";
 
 const authenticate = asyncHandler(async (req, res, next) => {
+	console.log("JWT_SECRET:", process.env.JWT_SECRET);
 	let token;
 
 	token = req.cookies.jwt;
