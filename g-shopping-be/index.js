@@ -24,6 +24,7 @@ app.use(cookieParser());
 app.use(
 	cors({
 		origin: ["https://g-shopping.onrender.com", "http://localhost:5173"],
+		credentials: true,
 	})
 );
 

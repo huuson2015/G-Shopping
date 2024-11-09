@@ -2,11 +2,34 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 import asyncHandler from "./asyncHandler.js";
 
+// const authenticate = asyncHandler(async (req, res, next) => {
+// 	console.log("JWT_SECRET:", process.env.JWT_SECRET);
+// 	let token;
+
+// 	token = req.cookies.jwt;
+
+// 	if (token) {
+// 		try {
+// 			const decoded = jwt.verify(token, process.env.JWT_SECRET);
+// 			req.user = await User.findById(decoded.userId).select("-password");
+// 			next();
+// 		} catch (error) {
+// 			res.status(401);
+// 			throw new Error("Not authorized, token failed.");
+// 		}
+// 	} else {
+// 		res.status(401);
+// 		throw new Error("Not authorized, no token.");
+// 	}
+// });
 const authenticate = asyncHandler(async (req, res, next) => {
-	console.log("JWT_SECRET:", process.env.JWT_SECRET);
 	let token;
 
-	token = req.cookies.jwt;
+	const authorizationHeader = req.headers.authorization;
+
+	if (authorizationHeader && authorizationHeader.startsWith("Bearer ")) {
+		token = authorizationHeader.substring(7).trim();
+	}
 
 	if (token) {
 		try {
