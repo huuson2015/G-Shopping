@@ -1,7 +1,7 @@
 import { PRODUCT_URL, UPLOAD_URL } from "../constants";
-import { apiSlice } from "./apiSlice";
+import { injectEndpoints } from "./apiSlice";
 
-export const productApiSlice = apiSlice.injectEndpoints({
+export const productApiSlice = injectEndpoints({
 	endpoints: (builder) => ({
 		getProducts: builder.query({
 			query: ({ keyword }) => ({

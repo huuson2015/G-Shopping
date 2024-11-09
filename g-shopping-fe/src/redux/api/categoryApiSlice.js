@@ -1,7 +1,7 @@
-import { apiSlice } from "./apiSlice";
+import { injectEndpoints } from "./apiSlice";
 import { CATEGORY_URL } from "../constants";
 
-export const categoryApiSlice = apiSlice.injectEndpoints({
+export const categoryApiSlice = injectEndpoints({
 	endpoints: (builder) => ({
 		createCategory: builder.mutation({
 			query: (newCategory) => ({

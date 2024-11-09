@@ -1,7 +1,7 @@
-import { apiSlice } from "./apiSlice";
+import { injectEndpoints } from "./apiSlice";
 import { ORDER_URL, PAYPAL_URL } from "../constants";
 
-export const orderApiSlice = apiSlice.injectEndpoints({
+export const orderApiSlice = injectEndpoints({
 	endpoints: (builder) => ({
 		createOrder: builder.mutation({
 			query: (order) => ({
