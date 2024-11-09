@@ -1,50 +1,38 @@
-import path from "path";
 import express from "express";
 import multer from "multer";
+import cloudinary from "cloudinary";
+import dotenv from "dotenv";
+dotenv.config();
+
+cloudinary.config({
+	cloud_name: process.env.CLOUD_NAME_CLOUDINARY,
+	api_key: process.env.API_KEY_CLOUDINARY,
+	api_secret: process.env.API_SECRET_CLOUDINARY,
+});
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-	destination: (req, file, cb) => {
-		cb(null, "uploads/");
-	},
+const upload = multer({ dest: "uploads/" });
 
-	filename: (req, file, cb) => {
-		const extname = path.extname(file.originalname);
-		cb(null, `${file.fieldname}-${Date.now()}${extname}`);
-	},
-});
-
-const fileFilter = (req, file, cb) => {
-	const filetypes = /jpe?g|png|webp/;
-	const mimetypes = /image\/jpe?g|image\/png|image\/webp/;
-
-	const extname = path.extname(file.originalname).toLowerCase();
-	const mimetype = file.mimetype;
-
-	if (filetypes.test(extname) && mimetypes.test(mimetype)) {
-		cb(null, true);
-	} else {
-		cb(new Error("Images only"), false);
+const uploadToCloudinary = async (req, res) => {
+	try {
+		const file = req.file;
+		const result = await cloudinary.uploader.upload(file.path, {
+			resource_type: "image",
+			eager: [
+				{ width: 400, height: 400, crop: "fill" },
+				{ width: 200, height: 200, crop: "fill" },
+			],
+		});
+		res.status(200).send({
+			message: "Image uploaded successfully",
+			image: result.secure_url,
+		});
+	} catch (err) {
+		res.status(400).send({ message: err.message });
 	}
 };
 
-const upload = multer({ storage, fileFilter });
-const uploadSingleImage = upload.single("image");
-
-router.post("/", (req, res) => {
-	uploadSingleImage(req, res, (err) => {
-		if (err) {
-			res.status(400).send({ message: err.message });
-		} else if (req.file) {
-			res.status(200).send({
-				message: "Image uploaded successfully",
-				image: `/${req.file.path}`,
-			});
-		} else {
-			res.status(400).send({ message: "No image file provided" });
-		}
-	});
-});
+router.post("/", upload.single("image"), uploadToCloudinary);
 
 export default router;
