@@ -23,7 +23,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: ["https://g-shopping.onrender.com", "http://localhost:5173"],
+		origin: [
+			"https://g-shopping.onrender.com",
+			"http://localhost:5173",
+			"https://g-shopping-be-yqwm.onrender.com",
+		],
 		credentials: true,
 	})
 );

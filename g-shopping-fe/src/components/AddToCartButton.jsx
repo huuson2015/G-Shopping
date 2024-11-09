@@ -10,7 +10,6 @@ const AddToCartButton = ({ product }) => {
 		dispatch(addToCart({ ...product, qty: 1 }));
 		toast.success("Product added to cart");
 	};
-	console.log(product);
 
 	return (
 		<button
