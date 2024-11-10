@@ -34,6 +34,8 @@ const AddProductModal = ({ reload, open, onClose }) => {
 	const uploadFileHandler = async () => {
 		const formData = new FormData();
 		formData.append("image", img);
+		//log form data value for me
+		console.log(formData.getAll("image"));
 
 		try {
 			const res = await uploadProductImage(formData);

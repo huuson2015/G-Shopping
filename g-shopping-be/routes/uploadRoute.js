@@ -1,6 +1,7 @@
 import express from "express";
 import cloudinary from "cloudinary";
 import dotenv from "dotenv";
+import multer from "multer";
 dotenv.config();
 
 cloudinary.config({
@@ -11,8 +12,16 @@ cloudinary.config({
 
 const router = express.Router();
 
+const upload = multer({
+	dest: "./uploads/",
+	limits: { fieldSize: 1024 * 1024 * 5 },
+});
+
 const uploadToCloudinary = async (req, res) => {
 	try {
+		if (!req.file) {
+			return res.status(400).send({ message: "No file provided" });
+		}
 		const file = req.file;
 		const result = await cloudinary.uploader.upload(file.path, {
 			resource_type: "image",
@@ -30,6 +39,6 @@ const uploadToCloudinary = async (req, res) => {
 	}
 };
 
-router.post("/", uploadToCloudinary);
+router.post("/", upload.single("image"), uploadToCloudinary);
 
 export default router;
