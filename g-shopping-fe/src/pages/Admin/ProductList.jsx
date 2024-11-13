@@ -1,9 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxPlus } from "react-icons/rx";
-import {
-	useAllProductsQuery,
-	useDeleteProductMutation,
-} from "@redux/api/productApiSlice";
+import { useDeleteProductMutation } from "@redux/api/productApiSlice";
 import Loader from "@components/Loader";
 import Message from "@components/Message";
 import AddProductModal from "./Modals/AddProductModal";
@@ -11,16 +8,40 @@ import ConfirmModal from "./Modals/ConfirmModal";
 import { toast } from "react-toastify";
 import UpdateProductModal from "./Modals/UpdateProductModal";
 import ProductItem from "./CardItem/ProductItem";
+import { useGetFilteredProductsQuery } from "@redux/api/productApiSlice";
+import { useFetchCategoriesQuery } from "@redux/api/categoryApiSlice";
+import { useSearchParams } from "react-router-dom";
 
 const ProductList = () => {
-	const { data: products, refetch, isLoading, error } = useAllProductsQuery();
+	const [searchParams, setSearchParams] = useSearchParams({
+		page: 1,
+	});
+
+	const filteredProductsQuery = useGetFilteredProductsQuery(
+		searchParams.toString()
+	);
+
+	const { data, isLoading, refetch, error } = filteredProductsQuery;
 	const [isModalAddOpen, setIsModalAddOpen] = useState(false);
 	const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
-	const [selectedProduct, setSelectedProduct] = useState(products?.[0]);
+	const [selectedProduct, setSelectedProduct] = useState(data?.[0]);
 	const [isModalConfirmDeleteOpen, setIsModalConfirmDeleteOpen] =
 		useState(false);
 
 	const [deleteProduct] = useDeleteProductMutation();
+	const { data: categories } = useFetchCategoriesQuery();
+
+	const handleSelectCategory = (e) => {
+		const currentParams = new URLSearchParams(searchParams);
+		currentParams.delete("productCategoryId");
+		if (e.target.value !== "")
+			currentParams.set("productCategoryId", e.target.value);
+		setSearchParams(currentParams);
+	};
+
+	useEffect(() => {
+		refetch();
+	}, [refetch, searchParams]);
 
 	const toggleModalUpdate = () => {
 		setIsModalUpdateOpen(!isModalUpdateOpen);
@@ -54,7 +75,7 @@ const ProductList = () => {
 
 	return (
 		<div className="px-6 sm:px-8 lg:px-[8.438rem] mt-5">
-			<div className="flex mb-5 justify-between">
+			<div className="flex justify-between">
 				<div className="flex gap-2 items-center my-4">
 					<div className="min-h-[2.8rem] w-[1.2rem] bg-button-red rounded-md"></div>
 					<h2 className="text-2xl font-medium text-button-red">
@@ -73,6 +94,22 @@ const ProductList = () => {
 					onClose={toggleModalAdd}
 				/>
 			</div>
+			<div className="flex justify-end">
+				<select
+					name="category"
+					id="category"
+					placeholder="Choose Category"
+					className="w-fit py-2 px-5  input-primary capitalize mb-3"
+					onChange={handleSelectCategory}
+				>
+					<option value="">Choose Category</option>
+					{categories?.map((c) => (
+						<option key={c._id} className="capitalize" value={c._id}>
+							{c.name}
+						</option>
+					))}
+				</select>
+			</div>
 			{isLoading ? (
 				<div className="w-full min-h-[60vh] flex justify-center items-center">
 					<div className="size-20">
@@ -85,7 +122,7 @@ const ProductList = () => {
 				</Message>
 			) : (
 				<div className="flex justify-between flex-wrap gap-4 mb-10">
-					{products.map((product) => (
+					{data.map((product) => (
 						<ProductItem
 							key={product._id}
 							setSelectedProduct={setSelectedProduct}

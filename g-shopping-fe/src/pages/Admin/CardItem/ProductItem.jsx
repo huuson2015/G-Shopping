@@ -21,7 +21,7 @@ const ProductItem = ({
 			>
 				<RxCross2 />
 			</button>
-			<div className="overflow-hidden rounded-md w-2/6 p-4">
+			<div className="overflow-hidden bg-white rounded-md w-2/6 p-4">
 				<LazyLoadImage
 					src={product?.image}
 					alt={product?.name}
@@ -29,7 +29,7 @@ const ProductItem = ({
 					wrapperProps={{
 						style: { transitionDelay: "1s" },
 					}}
-					className="h-[10rem] md:h-[10rem] w-[20rem] object-cover rounded-md"
+					className="h-[10rem] md:h-[10rem] w-[20rem] object-contain rounded-md"
 				/>
 			</div>
 			<div className="p-4 w-4/6 flex flex-col justify-around">
