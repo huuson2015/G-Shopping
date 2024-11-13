@@ -50,9 +50,6 @@ export const productApiSlice = apiSlice.injectEndpoints({
 			query: (data) => ({
 				url: `${import.meta.env.VITE_UPLOAD_URL}`,
 				method: "POST",
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
 				body: data,
 			}),
 		}),
