@@ -68,24 +68,15 @@ const AboutUs = () => {
 		prevArrow: <PrevArrow />,
 		nextArrow: <NextArrow />,
 		cssTransitions: true,
-		responsive: [
-			{
-				breakpoint: 1024,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1,
-					infinite: true,
-					dots: true,
-				},
-			},
-			{
-				breakpoint: 600,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-				},
-			},
-		],
+		centerPadding: "20px",
+		appendDots: (dots) => (
+			<div className="mt-4">
+				<ul className="flex justify-center space-x-2"> {dots} </ul>
+			</div>
+		),
+		customPaging: () => (
+			<button className="w-5 h-5 rounded-full bg-gray-300 hover:bg-gray-500 focus:outline-none"></button>
+		),
 	};
 
 	return (
@@ -205,18 +196,85 @@ const AboutUs = () => {
 				</div>
 			</div>
 			<div className="my-20">
-				<Slider {...settings}>
-					<div className="card">
-						<img src="" alt="" />
+				<Slider {...settings} className="w-full px-4">
+					<div className="p-6">
+						<div className="border p-4 flex flex-col justify-center items-center space-y-2">
+							<img
+								className="self-center"
+								src="/assets/image46.png"
+								alt="Exclusive"
+							/>
+							<p className="font-bold text-lg text-center">Exclusive</p>
+							<p className="text-sm text-center">
+								Exclusive offers a diverse assortment
+							</p>
+						</div>
 					</div>
-					<div className="card">User 2</div>
-					<div className="card">User 3</div>
-					<div className="card">User 4</div>
-					<div className="card">User 5</div>
-					<div className="card">User 6</div>
-					<div className="card">User 7</div>
-					<div className="card">User 8</div>
-					<div className="card">User 9</div>
+					<div className="p-6">
+						<div className="border p-4 flex flex-col justify-center items-center space-y-2">
+							<img
+								className="self-center"
+								src="/assets/image47.png"
+								alt="Exclusive"
+							/>
+							<p className="font-bold text-lg text-center">Exclusive</p>
+							<p className="text-sm text-center">
+								Exclusive offers a diverse assortment
+							</p>
+						</div>
+					</div>
+					<div className="p-6">
+						<div className="border p-4 flex flex-col justify-center items-center space-y-2">
+							<img
+								className="self-center"
+								src="/assets/image51.png"
+								alt="Exclusive"
+							/>
+							<p className="font-bold text-lg text-center">Exclusive</p>
+							<p className="text-sm text-center">
+								Exclusive offers a diverse assortment
+							</p>
+						</div>
+					</div>
+					<div className="p-6">
+						<div className="border p-4 flex flex-col justify-center items-center space-y-2">
+							<img
+								className="self-center"
+								src="/assets/image47.png"
+								alt="Exclusive"
+							/>
+							<p className="font-bold text-lg text-center">Exclusive</p>
+							<p className="text-sm text-center">
+								Exclusive offers a diverse assortment
+							</p>
+						</div>
+					</div>
+					<div className="p-6">
+						<div className="border p-4 flex flex-col justify-center items-center space-y-2">
+							<img
+								className="self-center"
+								src="/assets/image46.png"
+								alt="Exclusive"
+							/>
+							<p className="font-bold text-lg text-center">Exclusive</p>
+							<p className="text-sm text-center">
+								Exclusive offers a diverse assortment
+							</p>
+						</div>
+					</div>
+					<div className="p-6">
+						<div className="border p-4 flex flex-col justify-center items-center space-y-2">
+							<img
+								className="self-center"
+								src="/assets/image46.png"
+								alt="Exclusive"
+							/>
+							<p className="font-bold text-lg text-center">Exclusive</p>
+							<p className="text-sm text-center">
+								Exclusive offers a diverse assortment
+							</p>
+						</div>
+					</div>
 				</Slider>
 			</div>
 			<div className="flex justify-center items-center gap-11 my-20">

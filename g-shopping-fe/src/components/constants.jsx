@@ -11,10 +11,6 @@ const appRoutes = [
 		name: "About",
 		path: "/about-us",
 	},
-	{
-		name: "Blogs",
-		path: "/blogs",
-	},
 ];
 
 export default appRoutes;
