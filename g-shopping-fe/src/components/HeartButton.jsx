@@ -35,13 +35,13 @@ const HeartButton = ({ product }) => {
 
 	return (
 		<div
-			className="absolute top-2 right-2 cursor-pointer"
+			className="absolute top-2 right-2 cursor-pointer p-2 bg-button-hover1/30 rounded-full"
 			onClick={() => toggleFavorites()}
 		>
 			{isFavorite ? (
 				<FaHeart size={20} className="text-button-red" />
 			) : (
-				<FaRegHeart size={20} className="text-white" />
+				<FaRegHeart size={20} className="text-button-red" />
 			)}
 		</div>
 	);
