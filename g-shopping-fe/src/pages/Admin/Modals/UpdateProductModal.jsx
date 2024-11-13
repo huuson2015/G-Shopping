@@ -29,18 +29,24 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 		if (productData) setProduct(productData);
 	}, [productData, productId]);
 
-	const [uploadProductImage] = useUploadProductImageMutation();
+	const [uploadProductImage, { isLoading }] = useUploadProductImageMutation();
 	const [updateProduct] = useUpdateProductMutation();
 	const { data: categories } = useFetchCategoriesQuery();
 
-	const uploadFileHandler = async (e) => {
+	const [img, setImg] = useState("");
+
+	const handleChangeImage = (e) => {
+		setImg(e.target.files[0]);
+	};
+
+	const uploadFileHandler = async () => {
 		const formData = new FormData();
-		formData.append("image", e.target.files[0]);
+		formData.append("image", img);
 
 		try {
-			const res = await uploadProductImage(formData).unwrap();
-			toast.success(res.message);
-			setProduct({ ...product, image: res.image });
+			const res = await uploadProductImage(formData);
+			toast.success(res.data.message);
+			setProduct({ ...product, image: res.data.image });
 		} catch (error) {
 			toast.error(error?.data?.message || error.error);
 		}
@@ -110,25 +116,30 @@ const UpdateProductModal = ({ productId, reload, open, onClose }) => {
 						</h1>
 						<div>
 							<label className="border bg-gray-200 text-primary-dark px-4 gap-4 flex-col w-full text-center rounded-lg cursor-pointer font-bold justify-center items-center flex py-4 md:py-10">
-								{product.image ? (
+								{product.image && (
 									<img
 										className="object-cover size-16 md:size-40 rounded-lg"
-										src={product.image}
+										src={img ? URL.createObjectURL(img) : product.image}
 										alt=""
 									/>
-								) : (
-									"Upload Image"
 								)}
-
-								<input
-									type="file"
-									name="image"
-									accept="image/*"
-									onChange={uploadFileHandler}
-									className={`w-full ${
-										!product.image ? "hidden" : "text-primary-dark"
-									}`}
-								/>
+								<label className="border bg-gray-200 text-primary-dark px-4 block w-full text-center rounded-lg cursor-pointer font-bold">
+									{img ? img.name : "Upload Image"}
+									<input
+										type="file"
+										name="image"
+										onChange={handleChangeImage}
+										className="w-full hidden"
+									/>
+								</label>
+								<button
+									className="mt-2 w-full px-4 py-2 bg-button-red disabled:bg-button-hover1 text-white rounded-lg"
+									type="button"
+									disabled={!img}
+									onClick={uploadFileHandler}
+								>
+									{isLoading ? "Uploading..." : "Upload"}
+								</button>
 							</label>
 						</div>
 						<div className="flex flex-col md:gap-2">
