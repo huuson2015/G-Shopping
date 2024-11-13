@@ -80,6 +80,15 @@ export const productApiSlice = apiSlice.injectEndpoints({
 			keepUnusedDataFor: 5,
 		}),
 
+		getRelatedProducts: builder.query({
+			query: (productId) => ({
+				url: `${
+					import.meta.env.VITE_PRODUCT_URL
+				}/${productId}/related-products`,
+				method: "GET",
+			}),
+		}),
+
 		getFilteredProducts: builder.query({
 			query: (searchParams) => ({
 				url: `${import.meta.env.VITE_PRODUCT_URL}/filtered-products`,
@@ -108,6 +117,7 @@ export const {
 	useDeleteProductMutation,
 	useGetTopProductsQuery,
 	useGetNewProductsQuery,
+	useGetRelatedProductsQuery,
 	useGetFilteredProductsQuery,
 	useGetProductBrandsQuery,
 } = productApiSlice;

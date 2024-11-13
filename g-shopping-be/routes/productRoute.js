@@ -14,6 +14,7 @@ import {
 	getNewProducts,
 	filterProducts,
 	getAllBrand,
+	getRelatedProducts,
 } from "../controllers/productController.js";
 
 const router = express.Router();
@@ -31,6 +32,7 @@ router.route("/new").get(getNewProducts);
 
 router.route("/brands").get(getAllBrand);
 router.route("/filtered-products").get(filterProducts);
+router.route("/:id/related-products").get(getRelatedProducts);
 
 router
 	.route("/:id")

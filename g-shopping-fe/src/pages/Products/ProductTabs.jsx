@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Ratings from "@components/Ratings";
-import { useGetTopProductsQuery } from "@redux/api/productApiSlice";
+import { useGetRelatedProductsQuery } from "@redux/api/productApiSlice";
 import Loader from "@components/Loader";
 import SmallProductCard from "@components/SmallProductCard";
 import { PropTypes } from "prop-types";
@@ -19,7 +19,7 @@ const ProductTabs = ({
 	setComment,
 	product,
 }) => {
-	const { data, isLoading } = useGetTopProductsQuery();
+	const { data, isLoading } = useGetRelatedProductsQuery(product._id);
 	const [hover, setHover] = useState(null);
 
 	const handleRating = (value) => {
@@ -140,7 +140,7 @@ const ProductTabs = ({
 						</div>
 					</TabPanel>
 					<TabPanel>
-						<section className="flex flex-wrap gap-2">
+						<section className="mb-4">
 							{!data ? (
 								<Loader />
 							) : (

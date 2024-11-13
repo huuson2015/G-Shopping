@@ -184,6 +184,22 @@ const getNewProducts = asyncHandler(async (req, res) => {
 	}
 });
 
+const getRelatedProducts = asyncHandler(async (req, res) => {
+	try {
+		const product = await Product.findById(req.params.id);
+		const relatedProducts = await Product.find({
+			category: product.category,
+		});
+		const randomRelatedProducts = relatedProducts
+			.sort(() => Math.random() - 0.5)
+			.slice(0, 4);
+		res.json(randomRelatedProducts);
+	} catch (error) {
+		console.error(error);
+		res.status(400).json(error.message);
+	}
+});
+
 const filterProducts = asyncHandler(async (req, res) => {
 	try {
 		const { productName, productCategoryId, productPrice, productBrand } =
@@ -239,4 +255,5 @@ export {
 	getTopProducts,
 	getNewProducts,
 	filterProducts,
+	getRelatedProducts,
 };
