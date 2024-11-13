@@ -27,6 +27,7 @@ const Me = lazy(() => import("@pages/User/Contents/Me"));
 const Location = lazy(() => import("@pages/User/Contents/Location"));
 const OrderList = lazy(() => import("@pages/Admin/OrderList"));
 const AdminDashboard = lazy(() => import("@pages/Admin/AdminDashboard"));
+const AboutUs = lazy(() => import("@pages/AboutUs"));
 
 const AppRouter = () => {
 	return (
@@ -47,6 +48,7 @@ const AppRouter = () => {
 					<Route path="/shop" element=<Shop /> />
 					<Route path="/favorite" element=<Favorites /> />
 					<Route path="/cart" element={<Cart />} />
+					<Route path="/about-us" element=<AboutUs /> />
 					<Route path="/product/:id" element=<ProductDetails /> />
 					<Route path="" element={<PrivateRoute />}>
 						<Route path="profile" element=<Profile />>

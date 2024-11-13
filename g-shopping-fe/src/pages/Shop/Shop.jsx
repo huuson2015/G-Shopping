@@ -32,7 +32,7 @@ const Shop = () => {
 	return (
 		<div className="px-6 sm:px-8 lg:px-[8.438rem] py-4 lg:py-10">
 			<div className="flex md:flex-row w-full">
-				<div className="mr-4 hidden md:block md:w-1/5 3xl:w-1/4 mt-2 mb-2">
+				<div className="mr-4 border p-4 h-fit rounded-lg hidden md:block md:w-1/5 3xl:w-1/4 mt-2 mb-2">
 					<Filter
 						searchParams={searchParams}
 						setSearchParams={setSearchParams}
@@ -54,7 +54,7 @@ const Shop = () => {
 							<DialogBackdrop className="fixed inset-0 bg-black/30" />
 
 							<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-								<DialogPanel className="rounded-lg bg-white p-12">
+								<DialogPanel className="rounded-lg bg-white p-4">
 									<Filter />
 								</DialogPanel>
 							</div>

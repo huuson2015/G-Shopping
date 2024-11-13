@@ -7,6 +7,9 @@ import { setCategories } from "@redux/features/shop/shopSlice";
 import { useEffect } from "react";
 import { useGetProductBrandsQuery } from "@redux/api/productApiSlice";
 
+import { Range } from "react-range";
+import debounce from "lodash/debounce";
+
 const Filter = ({ searchParams, setSearchParams }) => {
 	const { categories } = useSelector((state) => state.shop);
 
@@ -16,6 +19,35 @@ const Filter = ({ searchParams, setSearchParams }) => {
 		const currentParams = new URLSearchParams(searchParams);
 		return currentParams.get("brand") || "all";
 	});
+
+	const [price, setPrice] = useState(() => {
+		const currentParams = new URLSearchParams(searchParams);
+		return [currentParams.get("productPrice")] || [0];
+	});
+
+	const [selectedPrice, setSelectedPrice] = useState(() => {
+		const currentParams = new URLSearchParams(searchParams);
+		return [currentParams.get("productPrice")] || [0];
+	});
+
+	const handleChangePrice = (setValue) => {
+		setPrice(setValue);
+		const debouncedSetSelectedPrice = debounce(
+			() => {
+				setSelectedPrice(setValue);
+			},
+			500,
+			{ leading: false, trailing: true }
+		);
+		debouncedSetSelectedPrice();
+	};
+
+	useEffect(() => {
+		const currentParams = new URLSearchParams(searchParams);
+		currentParams.set("productPrice", selectedPrice);
+		selectedPrice === "" && currentParams.delete("productPrice");
+		setSearchParams(currentParams);
+	}, [selectedPrice, searchParams, setSearchParams]);
 
 	useEffect(() => {
 		if (!categoriesQuery.isLoading) {
@@ -64,16 +96,15 @@ const Filter = ({ searchParams, setSearchParams }) => {
 	};
 
 	return (
-		<div className="w-full">
+		<div className="w-full rounded-lg">
 			<h2 className="py-2 rounded-md text-button-red font-medium">
 				Filter by Categories
 			</h2>
-
-			<div className="sm:p-5 flex flex-col gap-2 mb-2">
+			<div className="sm:p-3 flex flex-col gap-2">
 				{categories?.map((category) => (
 					<label
 						key={category._id}
-						className="ml-2 flex gap-2 items-center capitalize text-sm font-medium text-primary-d"
+						className="flex gap-2 items-center capitalize text-sm font-medium text-primary-d"
 					>
 						<input
 							value={category._id}
@@ -91,13 +122,11 @@ const Filter = ({ searchParams, setSearchParams }) => {
 					</label>
 				))}
 			</div>
-
 			<h2 className="py-2 rounded-md text-button-red font-medium">
 				Filter by Brands
 			</h2>
-
-			<div className="sm:p-5 flex flex-col gap-2 mb-2">
-				<label className="ml-2 flex gap-2 items-center text-sm font-medium">
+			<div className="sm:p-3 flex flex-col gap-2">
+				<label className="flex gap-2 items-center text-sm font-medium">
 					<input
 						type="radio"
 						id="all"
@@ -112,7 +141,7 @@ const Filter = ({ searchParams, setSearchParams }) => {
 				{brands?.map((brand) => (
 					<label
 						key={brand}
-						className="ml-2 flex gap-2 items-center text-sm font-medium"
+						className="flex gap-2 items-center text-sm font-medium"
 					>
 						<input
 							type="radio"
@@ -128,26 +157,32 @@ const Filter = ({ searchParams, setSearchParams }) => {
 					</label>
 				))}
 			</div>
-
 			<h2 className="py-2 rounded-md text-button-red font-medium">
 				Filter by Price
 			</h2>
-
-			<input
-				type="text"
-				placeholder="Enter Price"
-				// value={queryParams.productPrice}
-				// onChange={handleSelectPrice}
-				className="w-full px-3 py-2 input-primary"
-			/>
-
-			<div className="p-5 pt-5">
-				<button
-					className="w-full p-2 bg-button-red hover:bg-button-hover1 rounded-md"
-					// onClick={handleClearFilter}
-				>
-					Reset
-				</button>
+			<div className="px-4">
+				<div className="flex justify-between mb-1">
+					<div>$ 0</div>
+					<div>$ 1000</div>
+				</div>
+				<Range
+					step={50}
+					min={0}
+					max={1000}
+					values={price}
+					onChange={(setValue) => handleChangePrice(setValue)}
+					renderTrack={({ props, children }) => (
+						<div className="w-full h-2 bg-gray-200 rounded-full" {...props}>
+							{children}
+						</div>
+					)}
+					renderThumb={({ props }) => (
+						<div
+							className="size-5 bg-button-red rounded-full flex items-center justify-center"
+							{...props}
+						/>
+					)}
+				/>
 			</div>
 		</div>
 	);

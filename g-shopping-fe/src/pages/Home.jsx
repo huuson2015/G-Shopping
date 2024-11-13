@@ -4,8 +4,6 @@ import ProductCard from "@components/ProductCard";
 import Message from "@components/Message";
 import Loader from "@components/Loader";
 import Header from "@components/Header";
-import { PiHeadset, PiTruck } from "react-icons/pi";
-import { GoShieldCheck } from "react-icons/go";
 
 const Home = () => {
 	const { keyword } = useParams();
@@ -53,44 +51,6 @@ const Home = () => {
 					</div>
 				</>
 			)}
-			<div className="flex justify-center items-center gap-11 my-20">
-				<div className="flex justify-center items-center flex-col gap-2">
-					<div className="p-4 bg-gray-300 rounded-full">
-						<PiTruck
-							size={60}
-							className="text-primary-base bg-text-dark p-4 rounded-full"
-						/>
-					</div>
-					<div className="text-center">
-						<h2 className="font-bold text-lg">FREE AND FAST DELIVERY</h2>
-						<p className="text-sm">Free delivery for all order over $100</p>
-					</div>
-				</div>
-				<div className="flex justify-center items-center flex-col gap-2">
-					<div className="p-4 bg-gray-300 rounded-full">
-						<PiHeadset
-							size={60}
-							className="text-primary-base bg-text-dark p-4 rounded-full"
-						/>
-					</div>
-					<div className="text-center">
-						<h2 className="font-bold text-lg">24/7 CUSTOMER SERVICE</h2>
-						<p className="text-sm">Friendly 24/7 customer support</p>
-					</div>
-				</div>
-				<div className="flex justify-center items-center flex-col gap-2">
-					<div className="p-4 bg-gray-300 rounded-full">
-						<GoShieldCheck
-							size={60}
-							className="text-primary-base bg-text-dark p-4 rounded-full"
-						/>
-					</div>
-					<div className="text-center">
-						<h2 className="font-bold text-lg">MONEY BACK GUARANTEE</h2>
-						<p className="text-sm">We reurn money within 30 days</p>
-					</div>
-				</div>
-			</div>
 		</div>
 	);
 };
