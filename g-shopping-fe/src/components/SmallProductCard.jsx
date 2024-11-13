@@ -25,7 +25,7 @@ const SmallProductCard = ({ product }) => {
 			</div>
 
 			<Link className="flex flex-col gap-2 p-4" to={`/product/${product._id}`}>
-				<p className="text-sm sm:text-base font-medium">{product.name}</p>
+				<p className="text-sm sm:text-base font-medium h-12">{product.name}</p>
 				<span className="w-fit bg-button-red text-white text-xs font-medium px-2.5 py-0.5 rounded-full">
 					${product.price}
 				</span>

@@ -31,7 +31,9 @@ const ProductCard = ({ product }) => {
 					className="text-sm sm:text-base font-medium"
 					to={`/product/${product._id}`}
 				>
-					<p className="text-sm sm:text-base font-medium">{product.name}</p>
+					<p className="text-sm sm:text-base font-medium h-12">
+						{product.name}
+					</p>
 					<span className="w-fit bg-button-red text-white text-sm font-medium px-2.5 py-0.5 rounded-full ">
 						$ {product.price}
 					</span>

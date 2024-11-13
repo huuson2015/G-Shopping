@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { PropTypes } from "prop-types";
+import { Link } from "react-router-dom";
 
 const PrevArrow = (props) => {
 	const { onClick } = props;
@@ -92,29 +93,35 @@ const ProductCarousel = () => {
 								key={_id}
 							>
 								<div className="overflow-hidden">
-									<LazyLoadImage
-										src={image}
-										alt={name}
-										effect="blur"
-										wrapperProps={{
-											style: { transitionDelay: "1s" },
-										}}
-										className="w-full rounded-t-lg object-cover h-[25rem] 3xl:h-[30rem]"
-									/>
+									<Link className="" to={`/product/${_id}`}>
+										<LazyLoadImage
+											src={image}
+											alt={name}
+											effect="blur"
+											wrapperProps={{
+												style: { transitionDelay: "1s" },
+											}}
+											className="w-full rounded-t-lg object-cover h-[25rem] 3xl:h-[30rem]"
+										/>
+									</Link>
 								</div>
 
 								<div className="mt-2 h-[calc(100%-27rem)] 3xl:h-[calc(100%-32rem)] flex flex-col justify-between gap-2 md:mt-2 p-4">
 									<div>
 										<div className="flex justify-between">
-											<h2 className="font-medium text-[1.5rem]">{name}</h2>
-											<p className="font-medium py-1 px-3 bg-button-red rounded-full text-white">
+											<Link className="" to={`/product/${_id}`}>
+												<h2 className="font-medium text-3xl">{name}</h2>
+											</Link>
+											<p className="font-medium my-2 text-base w-fit py-1 px-4 bg-button-red rounded-full text-white">
 												${price}
 											</p>
 										</div>
-										<p className="">
+
+										<p className="text-justify">
 											<b>Description:</b> {description.substring(0, 170)} ...
 										</p>
 									</div>
+
 									<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-y-1">
 										<h1 className="flex items-center">
 											<FaStore className="mr-2 text-button-red" /> <b>Brand:</b>
