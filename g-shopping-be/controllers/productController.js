@@ -202,10 +202,11 @@ const filterProducts = asyncHandler(async (req, res) => {
 		}
 
 		if (productBrand) args.brand = { $regex: productBrand, $options: "i" };
+
 		if (productPrice) {
 			args.price = {
-				$gte: productPrice[0],
-				$lte: productPrice[1],
+				$gte: productPrice,
+				// $lte: productPrice[1],
 			};
 		}
 
