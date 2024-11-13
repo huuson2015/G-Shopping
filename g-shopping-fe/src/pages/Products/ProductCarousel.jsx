@@ -92,7 +92,7 @@ const ProductCarousel = () => {
 								className="border-none outline-none flex flex-col h-full justify-between"
 								key={_id}
 							>
-								<div className="overflow-hidden">
+								<div className="overflow-hidden bg-white">
 									<Link className="" to={`/product/${_id}`}>
 										<LazyLoadImage
 											src={image}
@@ -101,7 +101,7 @@ const ProductCarousel = () => {
 											wrapperProps={{
 												style: { transitionDelay: "1s" },
 											}}
-											className="w-full rounded-t-lg object-cover h-[25rem] 3xl:h-[30rem]"
+											className="w-full rounded-t-lg object-contain h-[25rem] 3xl:h-[30rem]"
 										/>
 									</Link>
 								</div>

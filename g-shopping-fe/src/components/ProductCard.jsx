@@ -14,13 +14,13 @@ const ProductCard = ({ product }) => {
 				</div>
 			)}
 			<div className="relative">
-				<div className="overflow-hidden">
+				<div className="overflow-hidden bg-white">
 					<LazyLoadImage
 						src={product.image}
 						alt={product.name}
 						effect="blur"
 						wrapperProps={{ style: { transitionDelay: "1s", width: "100%" } }}
-						className="w-full h-[15rem] object-cover rounded-t-lg"
+						className="w-full h-[15rem] object-contain rounded-t-lg"
 					/>
 				</div>
 				<HeartButton product={product} />

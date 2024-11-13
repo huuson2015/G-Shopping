@@ -13,12 +13,12 @@ const SmallProductCard = ({ product }) => {
 						Sold out
 					</div>
 				)}
-				<div className="overflow-hidden">
+				<div className="overflow-hidden bg-white">
 					<LazyLoadImage
 						src={product.image}
 						alt={product.name}
 						effect="blur"
-						className="w-full h-[15rem] object-cover rounded-t-lg"
+						className="w-full h-[15rem] object-contain rounded-t-lg"
 					/>
 				</div>
 				<HeartButton product={product} />
