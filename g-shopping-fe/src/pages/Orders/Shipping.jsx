@@ -46,7 +46,7 @@ const Shipping = () => {
 	return (
 		<div className="px-6 sm:px-8 lg:px-[8.438rem] pt-5 flex justify-center items-center mb-10">
 			<form
-				className="container flex flex-col gap-5 mx-5 sm:w-[40vw] border rounded-lg p-5 bg-gray-50 shadow"
+				className="w-full flex flex-col gap-5 mx-5 border rounded-lg p-5 bg-gray-50 shadow"
 				onSubmit={handleSubmit}
 			>
 				<div className="flex gap-2 items-center my-4">

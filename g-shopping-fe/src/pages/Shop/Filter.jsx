@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import { useState } from "react";
+import { useState, Children } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchCategoriesQuery } from "@redux/api/categoryApiSlice";
 
@@ -171,15 +171,17 @@ const Filter = ({ searchParams, setSearchParams }) => {
 					max={1000}
 					values={price}
 					onChange={(setValue) => handleChangePrice(setValue)}
-					renderTrack={({ props, children }) => (
+					renderTrack={({ children, props }) => (
 						<div className="w-full h-2 bg-gray-200 rounded-full" {...props}>
-							{children}
+							{Children.map(children, (child, index) => (
+								<div key={index}>{child}</div>
+							))}
 						</div>
 					)}
-					renderThumb={({ props }) => (
+					renderThumb={({ key }) => (
 						<div
+							key={key}
 							className="size-5 bg-button-red rounded-full flex items-center justify-center"
-							{...props}
 						/>
 					)}
 				/>

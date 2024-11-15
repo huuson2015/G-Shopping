@@ -56,10 +56,10 @@ const OrderList = () => {
 							<tr key={order._id}>
 								<td className="px-3 border-l">{order._id}</td>
 								<td>{order.user ? order.user.username : "N/A"}</td>
-								<td className="">
+								<td className="px-2">
 									{moment(order?.createdAt).format("MM/DD/YYYY")}
 								</td>
-								<td>$ {order.totalPrice}</td>
+								<td className="px-2">${order.totalPrice}</td>
 								<td className="py-2">
 									{order.isPaid ? (
 										<p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
@@ -85,7 +85,7 @@ const OrderList = () => {
 
 								<td className=" border-r">
 									<Link
-										className="py-2 flex justify-center items-center gap-2 bg-button-red disabled:bg-button-hover1 hover:bg-button-hover1 rounded-lg cursor-pointer text-primary-base mx-2"
+										className="px-2 md:px-0 py-2 flex justify-center items-center gap-2 bg-button-red disabled:bg-button-hover1 hover:bg-button-hover1 rounded-lg cursor-pointer text-primary-base mx-2"
 										to={`/order/${order._id}`}
 									>
 										More
