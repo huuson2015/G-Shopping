@@ -84,8 +84,11 @@ const OrderList = () => {
 								</td>
 
 								<td className=" border-r">
-									<Link to={`/order/${order._id}`}>
-										<button>More</button>
+									<Link
+										className="py-2 flex justify-center items-center gap-2 bg-button-red disabled:bg-button-hover1 hover:bg-button-hover1 rounded-lg cursor-pointer text-primary-base mx-2"
+										to={`/order/${order._id}`}
+									>
+										More
 									</Link>
 								</td>
 							</tr>

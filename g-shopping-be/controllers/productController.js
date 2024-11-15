@@ -233,7 +233,7 @@ const filterProducts = asyncHandler(async (req, res) => {
 	}
 });
 
-const getAllBrand = async (req, res) => {
+const getAllBrand = asyncHandler(async (req, res) => {
 	try {
 		const brands = await Product.distinct("brand");
 		res.json(brands);
@@ -241,7 +241,7 @@ const getAllBrand = async (req, res) => {
 		console.error(error);
 		res.status(500).json({ message: "Server error" });
 	}
-};
+});
 
 export {
 	addProduct,
