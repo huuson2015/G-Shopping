@@ -45,7 +45,6 @@ const Filter = ({ searchParams, setSearchParams }) => {
 	useEffect(() => {
 		const currentParams = new URLSearchParams(searchParams);
 		currentParams.set("productPrice", selectedPrice);
-		selectedPrice === "" && currentParams.delete("productPrice");
 		setSearchParams(currentParams);
 	}, [selectedPrice, searchParams, setSearchParams]);
 
@@ -166,24 +165,27 @@ const Filter = ({ searchParams, setSearchParams }) => {
 					<div>$ 1000</div>
 				</div>
 				<Range
+					key="range-component"
 					step={50}
 					min={0}
 					max={1000}
 					values={price}
 					onChange={(setValue) => handleChangePrice(setValue)}
-					renderTrack={({ children, props }) => (
+					renderTrack={({ props, children }) => (
 						<div className="w-full h-2 bg-gray-200 rounded-full" {...props}>
-							{Children.map(children, (child, index) => (
-								<div key={index}>{child}</div>
-							))}
+							{children}
 						</div>
 					)}
-					renderThumb={({ key }) => (
-						<div
-							key={key}
-							className="size-5 bg-button-red rounded-full flex items-center justify-center"
-						/>
-					)}
+					renderThumb={({ props }) => {
+						const { key, ...rest } = props;
+						return (
+							<div
+								key={key}
+								className="size-5 bg-button-red rounded-full flex items-center justify-center"
+								{...rest}
+							/>
+						);
+					}}
 				/>
 			</div>
 		</div>
