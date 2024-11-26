@@ -54,8 +54,11 @@ const Shop = () => {
 							<DialogBackdrop className="fixed inset-0 bg-black/30" />
 
 							<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-								<DialogPanel className="rounded-lg bg-white p-4">
-									<Filter />
+								<DialogPanel className="rounded-lg min-w-[20rem] bg-white p-4">
+									<Filter
+										searchParams={searchParams}
+										setSearchParams={setSearchParams}
+									/>
 								</DialogPanel>
 							</div>
 						</Dialog>
