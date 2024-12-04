@@ -146,6 +146,17 @@ const markOrderAsPaid = async (req, res) => {
 			};
 
 			const updateOrder = await order.save();
+
+			await Promise.all(
+				order.orderItems.map(async (item) => {
+					const product = await Product.findById(item.product);
+					if (product) {
+						product.quantity -= item.qty;
+						await product.save();
+					}
+				})
+			);
+
 			res.status(200).json(updateOrder);
 		} else {
 			res.status(404);
