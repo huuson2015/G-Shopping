@@ -28,7 +28,7 @@ const addProduct = asyncHandler(async (req, res) => {
 			case !countInStock:
 				return res.json({ error: "Count in stock is required!" });
 		}
-		if (quantity > countInStock) {
+		if (quantity >= countInStock) {
 			return res.json({
 				error: "Quantity cannot be greater than count in stock!",
 			});
