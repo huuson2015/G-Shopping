@@ -3,7 +3,15 @@ import Product from "../models/productModel.js";
 
 const addProduct = asyncHandler(async (req, res) => {
 	try {
-		const { name, description, price, category, quantity, brand } = req.fields;
+		const {
+			name,
+			description,
+			price,
+			category,
+			quantity,
+			brand,
+			countInStock,
+		} = req.fields;
 		switch (true) {
 			case !name:
 				return res.json({ error: "Name is required!" });
@@ -17,6 +25,13 @@ const addProduct = asyncHandler(async (req, res) => {
 				return res.json({ error: "Quantity is required!" });
 			case !brand:
 				return res.json({ error: "Brand is required!" });
+			case !countInStock:
+				return res.json({ error: "Count in stock is required!" });
+		}
+		if (quantity > countInStock) {
+			return res.json({
+				error: "Quantity cannot be greater than count in stock!",
+			});
 		}
 		const product = new Product({ ...req.fields });
 		await product.save();

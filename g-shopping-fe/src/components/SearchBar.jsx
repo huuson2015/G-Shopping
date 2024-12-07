@@ -1,5 +1,5 @@
 import { BiSearch } from "react-icons/bi";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -14,14 +14,10 @@ const SearchBar = () => {
 	};
 
 	const navigate = useNavigate();
-	const location = useLocation();
 
 	const handleSearchSubmit = () => {
 		setSearchParams((prev) => prev.set("productName", searchTerm));
-
-		if (location.pathname !== "/shop" && searchTerm !== "") {
-			navigate(`/shop?${searchParams.toString()}`);
-		}
+		navigate(`/shop?${searchParams.toString()}`);
 	};
 
 	return (

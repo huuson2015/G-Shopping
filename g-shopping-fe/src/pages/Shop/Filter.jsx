@@ -45,6 +45,11 @@ const Filter = ({ searchParams, setSearchParams }) => {
 	useEffect(() => {
 		const currentParams = new URLSearchParams(searchParams);
 		currentParams.set("productPrice", selectedPrice);
+		if (
+			currentParams.get("productPrice") === "" ||
+			currentParams.get("productPrice") === "0"
+		)
+			currentParams.delete("productPrice");
 		setSearchParams(currentParams);
 	}, [selectedPrice, searchParams, setSearchParams]);
 
@@ -53,6 +58,11 @@ const Filter = ({ searchParams, setSearchParams }) => {
 			dispatch(setCategories(categoriesQuery.data));
 		}
 	}, [categoriesQuery.data, categoriesQuery.isLoading, dispatch]);
+
+	// useEffect(() => {
+	// 	const currentParams = new URLSearchParams(searchParams);
+	// 	currentParams;
+	// });
 
 	const { data: brands } = useGetProductBrandsQuery();
 

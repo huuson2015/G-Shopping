@@ -24,6 +24,13 @@ const createOrder = async (req, res) => {
 				throw new Error(`Product not found ${itemFromClient._id}`);
 			}
 
+			if (itemFromClient.qty > matchingItemFromDb.countInStock) {
+				res.status(400).json({
+					error: `Not enough stock for ${matchingItemFromDb.name}. Available stock: ${matchingItemFromDb.countInStock}`,
+				});
+				return;
+			}
+
 			return {
 				...itemFromClient,
 				product: itemFromClient._id,
@@ -152,6 +159,7 @@ const markOrderAsPaid = async (req, res) => {
 					const product = await Product.findById(item.product);
 					if (product) {
 						product.quantity -= item.qty;
+						product.countInStock -= item.qty;
 						await product.save();
 					}
 				})
