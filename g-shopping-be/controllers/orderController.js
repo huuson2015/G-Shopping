@@ -104,6 +104,11 @@ const calcualteTotalSalesByDate = async (req, res) => {
 					totalSales: { $sum: "$totalPrice" },
 				},
 			},
+			{
+				$sort: {
+					_id: 1,
+				},
+			},
 		]);
 
 		res.json(salesByDate);
